@@ -1,0 +1,30 @@
+import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux';
+
+import { MainPage } from './Components/MainPage.jsx'
+import { NotFound } from './Components/NotFound.jsx'
+import { ErrorPage } from './Components/ErrorPage.jsx'
+
+import { store } from './Store/store.js';
+
+const router = createBrowserRouter([
+  { path: '/', element: <MainPage />, errorElement: <ErrorPage />},
+  { path: '/Interventi', element: <h1>Interventi</h1>},
+  { path: '/Interventi/:id', element: <h1>Intervento Singolo</h1>},
+  { path: '/Interventi/:id/Modifica', element: <h1>Modifica Rapportino</h1>},
+  { path: '/CompilazioneOre', element: <h1>Compilazione Ore</h1>},
+  { path: '/CompilazioneOre/:id', element: <h1>Compilazione Ore Singolo</h1>},
+  { path: '/CompilazioneOre/:id/Modifica', element: <h1>Modifica Ore Singolo</h1>},
+  { path: '/Statistiche', element: <h1>Statistiche</h1>},
+  { path: '/Statistiche/:id', element: <h1>Statistiche Singola Commessa</h1>},
+  { path: '*', element: <NotFound />}
+])
+
+createRoot(document.getElementById('root')).render(
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+)
+
+
