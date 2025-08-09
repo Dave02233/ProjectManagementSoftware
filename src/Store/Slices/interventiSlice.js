@@ -16,7 +16,7 @@ import { randomChances } from '../../Functions/randomChances.js';
 
 const statuses = ['Completato', 'In Corso', 'In Attesa'];
 
-const fakeTestData = Array.from({ length: 100 }, (_, i) => ({
+const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
     name: `Intervento ${i+1}`,
     id: i + 1,
     description: `Descrizione dell'intervento ${i+1}`,
@@ -38,15 +38,12 @@ const sliceOptions = {
     reducers: {
         setFilteredData: (state, action) => {
             state.filter = action.payload;
-            console.log('all:', state.all);
-            console.log('filter:', state.filter);
             if (state.filter) {
                 state.filteredData = state.all.filter(intervento => intervento.name.toLowerCase().includes(state.filter.toLowerCase())
                 );
             } else {
                 state.filteredData = state.all;
             }
-            console.log('filteredData:', state.filteredData);
         },
         resetFilteredData: (state) => {
         state.filter = '';

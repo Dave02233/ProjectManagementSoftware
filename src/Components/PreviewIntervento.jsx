@@ -1,5 +1,4 @@
-
-export const Intervento = ({ intervento, isLoading, error }) => {
+export const PreviewIntervento = ({ intervento, isLoading, error }) => {
 
     const { id, name, description, date, status} = intervento;
 

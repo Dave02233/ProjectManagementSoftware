@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilteredData } from '../Store/Slices/interventiSlice.js';
+import { NavLink } from 'react-router-dom';
 
-import { Intervento } from './Intervento.jsx';
+import { SectionPreviewInterventi } from './SectionPreviewInterventi.jsx';
+
 
 export const MainPage = () => {
 
@@ -21,19 +23,10 @@ export const MainPage = () => {
       <>
         <h1>Pagina Principale</h1>
         <input type='text' placeholder='Filtra Interventi' onChange={handleChange} value={filter} />
-        <ul>
-            {
-                errorLoading
-                    ? <li>Errore nel caricamento degli interventi.</li>
-                    : isLoading
-                        ? <li>Caricamento in corso...</li>
-                        : interventi.filteredData.length === 0
-                            ? <h2>Nessun intervento trovato</h2>
-                            : interventi.filteredData.map((intervento, index) => (
-                                <Intervento key={index} intervento={intervento} isLoading={false} error={false}/>
-                                ))
-            }
-        </ul>
+        <NavLink to={'/Interventi'}>
+          <SectionPreviewInterventi interventi={interventi.filteredData}/>
+        </NavLink>
+
       </>
     )
 }

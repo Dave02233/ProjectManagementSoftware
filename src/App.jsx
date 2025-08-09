@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux';
 
 import { MainPage } from './Components/MainPage.jsx'
-import { NotFound } from './Components/NotFound.jsx'
-import { ErrorPage } from './Components/ErrorPage.jsx'
+import { NotFound } from './Components/Extra/NotFound.jsx'
+import { ErrorPage } from './Components/Extra/ErrorPage.jsx'
 
 import { store } from './Store/store.js';
 
