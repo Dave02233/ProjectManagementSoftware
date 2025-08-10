@@ -14,14 +14,14 @@ const fetchData = createAsyncThunk('interventi/fetchData',
 // Dati fittizi da cancellare quando Daniele farà il backend
 import { randomChances } from '../../Functions/randomChances.js';
 
-const statuses = ['Completato', 'In Corso', 'In Attesa'];
+const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
 
 const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
     name: `Intervento ${i+1}`,
     id: i + 1,
     description: `Descrizione dell'intervento ${i+1}`,
     date: new Date().toISOString().split('T')[0],
-    status: statuses[randomChances(3).index]
+    status: statuses[randomChances(4).index]
 }));
 
 //

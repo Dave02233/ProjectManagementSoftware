@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 //Store
 import { setFilteredData } from '../Store/Slices/interventiSlice.js';
@@ -19,14 +19,23 @@ export const MainPage = () => {
   // Filter state
   const [filter, setFilter] = useState('');
   const handleChangeFilter = ({ target }) => {
-      setFilter(target.value);
-      dispatch(setFilteredData(target.value));
+      setFilter(prev => prev = target.value)
   }
+
+  // Dispatch change filter
+  useEffect( _ => {
+    dispatch(setFilteredData(filter));
+  }, [filter])
 
   return (
     <>
-      <h1>Pagina Principale</h1>
-      <input type='text' name='Filtro Interventi' placeholder='Filtro Interventi' onChange={handleChangeFilter} value={filter} />
+      <div className={styles.MainTitle}>
+        <h1>Pagina Principale</h1>
+        <button name='Login'>Login</button>
+      </div>
+      <div className={styles.UtilitiesContainer}>
+        <input className={styles.Filtro} type='text' name='Filtro' placeholder='Filtro Interventi' onChange={handleChangeFilter} value={filter} />
+      </div>
       <div className={styles.PreviewContainer}>
         <NavLink to={'/Interventi'}>
           <SectionPreviewInterventi interventi={interventi.filteredData}/>
