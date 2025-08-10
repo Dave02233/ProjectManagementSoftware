@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+// Components
 import { PreviewIntervento } from './PreviewIntervento.jsx';
 
 export const SectionPreviewInterventi = ({ interventi }) => {
 
+    // Preview component for a small section
     const [reducedData, setReducedData] = useState(interventi);
     const [isReduced, setIsReduced] = useState(false);
 
