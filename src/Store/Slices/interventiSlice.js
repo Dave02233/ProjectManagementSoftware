@@ -19,8 +19,25 @@ const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
 const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
     name: `Intervento ${i+1}`,
     id: i + 1,
+    author: 'Dave',
     description: `Descrizione dell'intervento ${i+1}`,
-    date: new Date().toISOString().split('T')[0],
+    //Definire constructor hours
+    data: [{ 
+        date: new Date().toISOString().split('T')[0],
+        workingHours: 6,
+        travelHours: 2,
+        km: 50
+    }, {
+        date: new Date().toISOString().split('T')[0],
+        workingHours: 5,
+        travelHours: 1,
+        km: 60
+    }, {
+        date: new Date().toISOString().split('T')[0],
+        workingHours: 3,
+        travelHours: 3,
+        km: 10
+    }],
     status: statuses[randomChances(4).index]
 }));
 

@@ -37,9 +37,9 @@ export const MainPage = () => {
         <input className={styles.Filtro} type='text' name='Filtro' placeholder='Filtro Interventi' onChange={handleChangeFilter} value={filter} />
       </div>
       <div className={styles.PreviewContainer}>
-        <NavLink to={'/Interventi'}>
-          <SectionPreviewInterventi interventi={interventi.filteredData}/>
-        </NavLink>
+        <div>
+        <SectionPreviewInterventi interventi={interventi.filteredData}/>
+        </div>
         <NavLink to={'/Interventi'}>
           <SectionPreviewInterventi interventi={interventi.filteredData}/>
         </NavLink>

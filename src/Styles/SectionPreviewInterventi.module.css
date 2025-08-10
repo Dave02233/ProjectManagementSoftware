@@ -27,3 +27,16 @@
         margin: 0;
     }
 }
+
+.AddReducedData {
+    border-radius: 5px;
+    border: 1px;
+
+    background-color: hsla(100, 100%, 100%, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.AddReducedData:hover {
+    font-size: larger;
+    background-color: hsla(100, 100%, 100%, 0.6);
+}
