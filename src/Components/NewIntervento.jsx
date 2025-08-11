@@ -81,28 +81,29 @@ export const NewIntervento = _ => {
     return (
         <div className={styles.DataContainer}>
             <form action="POST">
-                <h1>
-                    <span>
+                <div className={styles.TitleInputContainer}>
+                    <h1>
                         Cliente: 
-                    </span>
+                    </h1>
                     <input name="name" className={styles.MainInput} maxLength={20} value={newIntervento.name} onChange={handleChangeProperty} required />
-                    
-                </h1>
-                <h2>
-                    <span>
+                </div>
+
+                <div className={styles.TitleInputContainer}>
+                    <h1>
                         Autore:
-                    </span>
+                    </h1>
                     <input name="author" className={styles.MainInput} maxLength={20} value={newIntervento.author} onChange={handleChangeProperty}  required />
-                    
-                </h2>
+                </div>
+            
                 <hr />
-                <h3>
-                    <span>
+            
+                <div className={styles.TitleParagraphContainer}>
+                     <h3>
                         Descrizione:
-                    </span>
-                </h3>
-                <input name="description" className={styles.MainInput} maxLength={150} value={newIntervento.description} onChange={handleChangeProperty} required />
-            </form>
+                    </h3>
+                    <textarea name="description" className={styles.MainInput} maxLength={150} value={newIntervento.description} onChange={handleChangeProperty} required />
+                </div>
+             </form>
     
             <table>
                 <thead>
@@ -122,8 +123,9 @@ export const NewIntervento = _ => {
                             <td><input type="number" name="travelHours" value={item.travelHours} className={styles.TableInput} onChange={(e) => handleChangeDate(e, index)} /></td>
                             <td><input type="number" name="km" value={item.km} className={styles.TableInput} onChange={(e) => handleChangeDate(e, index)} /></td>
                             <td onClick={(e) => handleCheckDelete(e, index)}>
-                                <input type="button" className={styles.TableInput} />
-                                <img src="/Images/Delete.svg" alt="Delete" />
+                                <div className={styles.DeleteButtonContainer}>
+                                    <img src="/Images/Delete.svg" className={styles.DeleteButton} alt="Delete" />
+                                </div>
                             </td>
                         </tr>
                     ))}
@@ -134,7 +136,7 @@ export const NewIntervento = _ => {
                     </tr>
                 </tbody>
             </table>
-            <button className={statusColor} style={{backgroundColor: statusColor}} onClick={handleClickChangeStatus}>Status: {newIntervento.status}</button>
+            <button className={styles.StatusButton} style={{backgroundColor: statusColor}} onClick={handleClickChangeStatus}>Status: {newIntervento.status}</button>
         </div>
     )
 }
