@@ -1,49 +1,21 @@
-import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-//Store
-import { setFilteredData } from '../Store/Slices/interventiSlice.js';
-import { useDispatch, useSelector } from 'react-redux';
-// Components
-import { SectionPreviewInterventi } from './SectionPreviewInterventi.jsx';
+import { NavLink, Outlet } from 'react-router-dom';
 // Style
 import styles from '../Styles/MainPage.module.css';
 
 
 export const MainPage = () => {
 
-  // Store setup
-  const dispatch = useDispatch();
-  const interventi = useSelector((state) => state.interventi);
-  const { isLoading, errorLoading } = interventi; // Per ora non servono, ma utili con richieste API
-
-  // Filter state
-  const [filter, setFilter] = useState('');
-  const handleChangeFilter = ({ target }) => {
-      setFilter(prev => prev = target.value)
-  }
-
-  // Dispatch change filter
-  useEffect( _ => {
-    dispatch(setFilteredData(filter));
-  }, [filter])
+  const handleLogin = _ => alert('Funzione da aggiungere')
 
   return (
     <>
       <div className={styles.MainTitle}>
-        <h1>Pagina Principale</h1>
-        <button name='Login'>Login</button>
-      </div>
-      <div className={styles.UtilitiesContainer}>
-        <input className={styles.Filtro} type='text' name='Filtro' placeholder='Filtro Interventi' onChange={handleChangeFilter} value={filter} />
-      </div>
-      <div className={styles.PreviewContainer}>
-        <div>
-        <SectionPreviewInterventi interventi={interventi.filteredData}/>
-        </div>
-        <NavLink to={'/Interventi'}>
-          <SectionPreviewInterventi interventi={interventi.filteredData}/>
+        <NavLink to={'/'}>
+          <h1>Pagina Principale</h1>
         </NavLink>
+        <button name='Login' onClick={handleLogin}>Login</button>
       </div>
+      <Outlet />
     </>
   )
 }

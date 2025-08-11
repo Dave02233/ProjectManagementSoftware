@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 //Styles
 import styles from '../Styles/PreviewIntervento.module.css';
 
@@ -10,20 +11,22 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
                 status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.60)' : 'hsla(0, 2%, 70%, 0.60)';
 
     
-    console.log('Render Intervento')
+    console.log(id)
 
     return (
-        <div className={styles.PreviewInterventoContainer}>
-            <h1>{name}</h1>
-            <h2>
-                {data[0].date}
-                { 
-                    //Se ho più di un giorno di intervento mostro anche l'ultima data
-                    data.length > 1 ? ` => ${data[data.length-1].date}` : null
-                }
-            </h2>
-            <p>{description}</p>
-            <h3 style={{ backgroundColor: statusColor }}>Status: {status}</h3>
-        </div>
+        <NavLink to={`/Interventi/${id}`}>
+            <div className={styles.PreviewInterventoContainer}>
+                <h1>{name}</h1>
+                <h2>
+                    {data[0].date}
+                    { 
+                        //Se ho più di un giorno di intervento mostro anche l'ultima data
+                        data.length > 1 ? ` => ${data[data.length-1].date}` : null
+                    }
+                </h2>
+                <p>{description}</p>
+                <h3 style={{ backgroundColor: statusColor }}>Status: {status}</h3>
+            </div>
+        </NavLink>
     );
 }

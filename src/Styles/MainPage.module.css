@@ -1,30 +1,3 @@
-.MainContainer {
-    justify-content: center;
-    align-items: center;
-}
-
-.PreviewContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    width: 100%;
-
-    justify-content: space-evenly;
-    align-items: flex-start;
-
-    justify-self: center;
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-}
-
-.PreviewContainer > * {
-    width: 45%;
-}
-
 .MainTitle {
     text-align: center;
     width: 100%;
@@ -37,9 +10,19 @@
 
     background-color: hsla(180, 50%, 50%, 0.1);
 
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     h1 {
         margin: 0.5rem;
-        color: hsla(180, 45%, 40%, 1)
+        color: hsla(180, 45%, 40%, 1);
+        transition: color 0.3s ease-in-out;
+    }
+
+    h1:hover {
+        color: hsla(180, 45%, 65%, 1);
     }
 
     button {
@@ -70,43 +53,4 @@
 
 }
 
-.UtilitiesContainer {
-
-    display: flex;
-    flex-direction: row;
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 0.5rem 0;
-
-    width: 100%;
-
-    .Filtro {
-        display: border-box;
-
-        width: 50%;
-        height: 1.3rem;
-
-        font-size: 1.1rem;
-
-        border-radius: 5px;
-
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-
-        border-top: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-left: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-right: 2px solid  hsla(180, 49%, 10%, 0.8);
-        border-bottom: 2px solid  hsla(180, 49%, 10%, 0.8);
-
-        transition: all 0.3s ease-in-out;
-    }
-
-    .Filtro:hover, .Filtro:focus {
-        background-color: hsla(180, 49%, 36%, 0.6);
-        color: rgb(176, 235, 235);
-    }
-}
 
