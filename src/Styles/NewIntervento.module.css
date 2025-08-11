@@ -210,8 +210,11 @@
     align-items: center;
     height: 1.2rem;
     margin: 1rem;
+    width: 66%;
     input {
         height: 100%;
+        width: 80%;
+        margin-left: 0.5rem;
     }
 }
 
@@ -225,7 +228,7 @@
   textarea {
     padding: 0.5rem;
     border-radius: 10px;
-    width: 100%;
+    width: 66%;
     height: 6rem; 
     word-break: break-word; 
     resize: none; 

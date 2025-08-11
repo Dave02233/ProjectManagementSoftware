@@ -80,7 +80,7 @@ export const NewIntervento = _ => {
 
     return (
         <div className={styles.DataContainer}>
-            <form action="POST">
+         
                 <div className={styles.TitleInputContainer}>
                     <h1>
                         Cliente: 
@@ -103,7 +103,7 @@ export const NewIntervento = _ => {
                     </h3>
                     <textarea name="description" className={styles.MainInput} maxLength={150} value={newIntervento.description} onChange={handleChangeProperty} required />
                 </div>
-             </form>
+        
     
             <table>
                 <thead>
