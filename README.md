@@ -1,12 +1,22 @@
-# React + Vite
+# ProjectManagementSoftware
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ProjectManagementSoftware è una web app pensata per facilitare la gestione delle commesse, degli interventi e delle ore di lavoro. Ideale per chi, come me, lavora in automazione industriale o in ambienti dove il controllo preciso di tempi e risorse è fondamentale.
 
-Currently, two official plugins are available:
+## Cosa fa
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gestione interventi**  
+  Crea, modifica e invia rapporti d’intervento in modo semplice e veloce.
 
-## Expanding the ESLint configuration
+- **Compilazione automatica delle ore**  
+  Le ore di lavoro vengono calcolate automaticamente sulla base degli interventi registrati, eliminando errori e risparmiando tempo.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Statistiche dettagliate**  
+  Monitora l’andamento delle commesse e dei clienti con una sezione dedicata.  
+  Qui puoi inserire budget, tempistiche previste e tempi di gestione reali, per avere sempre sotto controllo lo stato di avanzamento e l’efficienza del lavoro.
+
+## Tecnologie utilizzate
+
+- [Vite](https://vitejs.dev/) — build tool super veloce per lo sviluppo front-end  
+- [React](https://reactjs.org/) — libreria per costruire interfacce utente  
+- [React Router DOM](https://reactrouter.com/) — gestione della navigazione tra pagine  
+- [Redux](https://redux.js.org/) — gestione dello stato globale dell’app
