@@ -1,0 +1,217 @@
+.DataContainer {
+    justify-self: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1.4rem;
+
+    width: 66%;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: hsla(180, 50%, 35%, 0.8);
+    box-shadow: 0px 3px 1px 3px rgba(0, 229, 255, 0.252);
+
+    margin: 1rem 0;
+
+    transition: all 0.3s ease-in-out;
+
+    hr {
+        height: 1px;
+        width: 100%;
+        background-color: hsla(180, 50%, 10%, 0.4);
+        border: none;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    h1, h2, h3, h4 {
+        margin: 0;
+    }
+
+    h4 {
+        color: hsla(180, 50%, 35%, 0.5);
+    }
+
+    h1, h2, h3 {
+        color: hsla(180, 50%, 10%, 1);
+       
+        span {
+            transition: color 0.3s ease-in-out;
+            color: rgba(0, 255, 195, 0.522);
+            text-shadow: 0px 1px 0px black;
+        }  
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+
+    p {
+        border-radius: 10px;
+        background-color:  hsla(180, 50%, 20%, 0.2);
+        color: hsla(180, 50%, 10%, 0.8);
+
+        padding: 1rem;
+
+        word-break: keep-all;
+        
+        width: 66%;
+        height: 5rem;
+
+        word-spacing: 0.1rem;
+        letter-spacing: 0.05rem;
+
+        text-align: center;
+
+        transition: all 0.3s ease-in-out;
+    }
+
+    .MainInput {
+        background-color: hsla(180, 50%, 40%, 0);
+        transition: all 0.3s ease-in-out;
+    }
+
+    table {
+        width: 80%;
+
+        border-radius: 10px;
+        
+        text-align: center;
+        border-collapse: collapse;
+
+        th {
+            padding: 0.5rem;
+        }
+
+        th {
+            font-size: 1.2rem;
+            color:hsla(180, 50%, 10%, 1);
+            border: 1px solid hsla(180, 50%, 10%, 1);
+        }
+        
+        td {
+            font-size: 1.1rem;
+            height: 2rem;
+
+            color:hsla(180, 50%, 15%, 0.7);
+            border: 1px solid hsla(180, 50%, 20%, 0.7);
+            transition: color 0.3s ease-in-out;
+            img {
+                    cursor: pointer;
+                    width: 1.7rem;
+                    height: 1.7rem;
+                    transition: transform 0.3s ease-in-out;   
+                    object-fit: cover;            
+                }
+            &:hover {
+                img {
+                    transform: scale(1.3);
+                }  
+            }
+        }
+
+        input.TableInput {
+            text-align: center;
+            font-weight: 500;
+
+            width: 100%;
+            height: 100%;
+            
+            font-size: 1rem;
+
+            margin: 0;
+            padding: 0;
+
+            border: none;
+            border-radius: 10px;
+
+            transition: all 0.3s ease-in-out;
+
+            background-color: hsla(180, 50%, 40%, 0);
+
+            /* Chrome, Safari, Edge, Opera */
+            &::-webkit-inner-spin-button, 
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+            margin: 0;
+            }
+
+            /* Firefox */
+            -moz-appearance: textfield;
+            appearance: none;
+
+
+
+
+            &:active, &:focus, &:hover {
+                background-color: hsla(180, 50%, 40%, 0.7);
+                color: rgba(0, 255, 195, 0.522);
+            }
+        }
+    }
+}
+
+.DataContainer:hover {
+    background-color: hsla(180, 50%, 35%, 1);
+    box-shadow: 0px 2px 0px 1px rgba(0, 229, 255, 0.352);
+
+    h1, h2, h3 {
+        span {
+            color: rgba(0, 255, 195, 0.879);
+        }
+    };
+
+    hr {
+        background-color: hsla(180, 50%, 30%, 0.9);
+    };
+
+    p {
+        background-color:  hsla(180, 50%, 25%, 0.7);
+        color: rgba(0, 255, 195, 0.879);
+    };
+
+    td {
+        color: rgba(0, 255, 195, 0.879);
+        border: 1px solid hsla(180, 50%, 20%, 1);
+    };
+
+    .MainInput {
+        background-color: hsla(180, 50%, 40%, 0.7);
+        color: rgba(0, 255, 195, 0.879);
+    }       
+
+    table {
+        input.TableInput {
+            background-color: hsla(180, 50%, 40%, 0.3);
+        }
+    }
+}
+
+
+.Green {
+    background-color: hsla(131, 100%, 30%, 0.400);
+}
+.GreenActive {
+    background-color: hsla(131, 100%, 50%, 0.400);
+}
+.Orange {
+    background-color: hsla(44, 100%, 30%, 0.650);
+}
+.OrangeActive {
+    background-color: hsla(44, 100%, 50%, 0.650);
+}
+.Red {
+    background-color: hsla(0, 100%, 30%, 0.60);
+}
+.RedActive {
+    background-color: hsla(0, 100%, 50%, 0.60);
+}
+.Grey {
+    background-color: hsla(0, 2%, 50%, 0.60);
+}
+.GreyActive {
+    background-color: hsla(0, 2%, 70%, 0.60);
+}

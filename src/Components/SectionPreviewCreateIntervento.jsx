@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+//Styles
 import styles from '../Styles/SectionPreviewCreateIntervento.module.css'
 
 export const SectionPreviewCreateIntervento = () => {
@@ -8,10 +10,12 @@ export const SectionPreviewCreateIntervento = () => {
 
     return (    
         <>
-            <div className={styles.MainContainer} onClick={handleClick}>
-                <img src="src\Images\Add.svg" alt="Creazione Nuovo Intervento" />
-                <h2>Crea un nuovo intervento</h2>
-            </div>
+            <NavLink to={'/Interventi/Creazione'}>
+                <div className={styles.MainContainer}>
+                    <img src="/Images/Add.svg" alt="Creazione Nuovo Intervento" />
+                    <h2>Crea un nuovo intervento</h2>
+                </div>
+            </NavLink>
         </>
     )
 }

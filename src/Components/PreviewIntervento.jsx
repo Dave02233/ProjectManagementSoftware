@@ -10,9 +10,6 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
                 status === 'Completato' ? 'hsla(131, 100%, 50%, 0.400)' : 
                 status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.60)' : 'hsla(0, 2%, 70%, 0.60)';
 
-    
-    console.log(id)
-
     return (
         <NavLink to={`/Interventi/${id}`}>
             <div className={styles.PreviewInterventoContainer}>
