@@ -1,6 +1,8 @@
 import { NavLink, Outlet } from 'react-router-dom';
 // Style
 import styles from '../Styles/MainPage.module.css';
+// Components
+import { LoginButton } from './LoginButton';
 
 
 export const MainPage = () => {
@@ -13,7 +15,8 @@ export const MainPage = () => {
         <NavLink to={'/'}>
           <h1>Pagina Principale</h1>
         </NavLink>
-        <button name='Login' onClick={handleLogin}>Login</button>
+        {/* <button name='Login' onClick={handleLogin}>Login</button> */}
+        <LoginButton onClick={handleLogin} />
       </div>
       <Outlet />
     </>

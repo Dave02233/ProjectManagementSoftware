@@ -1,0 +1,131 @@
+
+.niceButton {
+    display: grid;
+    grid-template: 1fr / 1fr;
+
+    justify-items: center;
+    align-items: center;
+
+    width: 8rem;
+    height: 3rem;
+    margin: 0 1rem;
+    overflow: hidden;
+
+    --borderRadius: 10px;
+    --grey: rgb(73, 72, 72);
+    --black: rgb(43, 43, 43);
+
+    border-radius: var(--borderRadius);
+
+    cursor: pointer;
+
+    .glowingBorder {
+        grid-area: 1 / 1;
+        width: 100%;
+        height: 100%;
+
+        --angle: 0deg;
+        background: conic-gradient(from var(--angle), red, orange, yellow, green, blue, indigo, violet);
+
+        animation: spin-colors 6s linear infinite;
+        filter: blur(4px);
+
+        border-radius: var(--borderRadius);
+
+        z-index: 1;
+    }
+
+    .transparentLayer {
+        grid-area: 1 / 1;
+        width: 100%;
+        height: 100%;
+
+        box-shadow: 0 2px 3px rgba(43, 43, 43, 0.6);
+
+        background-color: rgba(171, 169, 169, 0.4);
+        border-radius: var(--borderRadius);
+        
+        z-index: 2;
+    }
+
+    .outerButton {
+
+        grid-area: 1 / 1;
+
+        width: 95%;
+        height: 90%;
+
+        background: linear-gradient(to bottom, var(--grey), var(--black));
+        border-radius: var(--borderRadius);
+
+        transition: 0.3s all ease-in-out;
+
+        z-index: 3;
+    }
+
+    .innerButton {
+
+        grid-area: 1 / 1;
+
+        width: 85%;
+        height: 70%;
+
+        background: linear-gradient(to top, var(--grey), var(--black));
+        border-radius: var(--borderRadius);
+
+        transition: 0.3s all ease-in-out;
+
+        z-index: 4;
+    }
+
+    .text {
+        grid-area: 1 / 1;
+
+        text-align: center;
+        align-content: center;
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 600;
+        font-size: 1.2rem;
+
+        transition: 0.3s all ease-in-out;
+
+        background: conic-gradient(from var(--angle), #f8d1d1, #e4d9af, #d8f8d8, #ccf2ff, #d3d3fc, #efdbfc, #dbecfb);
+        animation: spin-colors 6s linear infinite;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        z-index: 5;
+    }
+
+    &:hover .outerButton, &:hover .innerButton, &:hover .text {
+        scale: 0.97;
+    }
+
+    &:active .outerButton {
+        background: linear-gradient(to top, var(--grey), var(--black));
+    }
+
+    &:active .innerButton {
+        background: linear-gradient(to top, var(--black), var(--grey));
+    }
+}
+
+/* Un casino per farlo funzionare ma bello */
+@property --angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+
+@keyframes spin-colors {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
