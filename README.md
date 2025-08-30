@@ -17,7 +17,7 @@ ProjectManagementSoftware è una web app pensata per facilitare la gestione dell
 
 ## Tecnologie utilizzate
 
-- [Vite](https://vitejs.dev/) — build tool super veloce per lo sviluppo front-end  
-- [React](https://reactjs.org/) — libreria per costruire interfacce utente  
-- [React Router DOM](https://reactrouter.com/) — gestione della navigazione tra pagine  
-- [Redux](https://redux.js.org/) — gestione dello stato globale dell’app
+- [Vite](https://vitejs.dev/)
+- [React](https://reactjs.org/)
+- [React Router DOM](https://reactrouter.com/)
+- [Redux](https://redux.js.org/)
