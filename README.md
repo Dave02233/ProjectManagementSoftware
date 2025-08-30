@@ -1,4 +1,5 @@
 # ProjectManagementSoftware
+## Work in progress...
 
 ProjectManagementSoftware è una web app pensata per facilitare la gestione delle commesse, degli interventi e delle ore di lavoro. Ideale per chi, come me, lavora in automazione industriale o in ambienti dove il controllo preciso di tempi e risorse è fondamentale.
 
