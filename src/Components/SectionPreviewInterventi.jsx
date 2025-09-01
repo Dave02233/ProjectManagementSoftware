@@ -33,7 +33,7 @@ export const SectionPreviewInterventi = _ => {
     // Preview component for a small section
     const [reducedData, setReducedData] = useState(interventi);
     const [isReduced, setIsReduced] = useState(false);
-    const [maxReducedNumber, setMaxReducedNumber] = useState(5);
+    const [maxReducedNumber, setMaxReducedNumber] = useState(10);
 
     const handleClickAddMaxReducedNumber = _ => {
         setMaxReducedNumber(prev => prev + 5)
