@@ -2,7 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 // Style
 import styles from '../Styles/MainPage.module.css';
 // Components
-import { LoginButton } from './LoginButton';
+import { LoginButton } from './SingleItems/LoginButton';
 
 
 export const MainPage = () => {

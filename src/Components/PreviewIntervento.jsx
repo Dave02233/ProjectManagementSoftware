@@ -18,7 +18,7 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
                     {data[0].date}
                     { 
                         //Se ho più di un giorno di intervento mostro anche l'ultima data
-                        data.length > 1 ? ` => ${data[data.length-1].date}` : null
+                        data.length > 1 ? ` || ${data[data.length-1].date}` : null
                     }
                 </h2>
                 <p>{description}</p>

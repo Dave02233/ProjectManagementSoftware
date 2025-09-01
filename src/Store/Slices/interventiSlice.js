@@ -11,37 +11,40 @@ const fetchData = createAsyncThunk('interventi/fetchData',
     }
 });
 
+
 // Dati fittizi da cancellare quando Daniele farà il backend
 import { randomChances } from '../../Functions/randomChances.js';
 
 const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
 
-const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
+// Genera un array di date
+const days = [];
+const initialDate = new Date(`2025-08-${randomChances(10).index + 1}`);
+const numberOfDays = (new Date() - initialDate) / (1000 * 60 * 60 * 24);
+
+for (let i = 0; i < numberOfDays; i++) {
+    const actDay = i * 1000 * 60 * 60 * 24;
+    const newDay = new Date((actDay + initialDate.getTime()))
+    days.push(newDay);
+}
+
+const fakeTestData = Array.from({ length: 13 }, (_, i) => ({
     name: `Intervento ${i+1}`,
     id: i + 1,
     author: 'Dave',
     description: `Descrizione dell'intervento ${i+1}`,
-    //Definire constructor hours
-    data: [{ 
-        date: new Date().toISOString().split('T')[0],
-        workingHours: 6,
-        travelHours: 2,
-        km: 50
-    }, {
-        date: new Date().toISOString().split('T')[0],
-        workingHours: 5,
-        travelHours: 1,
-        km: 60
-    }, {
-        date: new Date().toISOString().split('T')[0],
-        workingHours: 3,
-        travelHours: 3,
-        km: 10
-    }],
+    data: days
+    .slice(randomChances(days.length).index, days.length + 1)
+    .map(day => ({
+        date: day.toISOString().split('T')[0],
+        workingHours: randomChances(9).index + 1,
+        travelHours: randomChances(3).index + 1,
+        km: day.getDate() * 10
+    })),
     status: statuses[randomChances(4).index]
 }));
 
-//
+////////////////////////////////////////////////////////////////////////
 
 const sliceOptions = {
     name: 'interventi',

@@ -42,7 +42,7 @@
 
         box-shadow: 0 2px 3px rgba(43, 43, 43, 0.6);
 
-        background-color: rgba(171, 169, 169, 0.4);
+        background-color: rgba(171, 169, 169, 0.8);
         border-radius: var(--borderRadius);
         
         z-index: 2;
@@ -113,10 +113,13 @@
     }
 }
 
-/* Un casino per farlo funzionare ma bello */
+/* Utilizzo variabili come proprietà del keyframe */
+/* Definisce la sintassi della proprietà personalizzata come un angolo */
 @property --angle {
     syntax: '<angle>';
+    /* Indica che la proprietà non viene ereditata dagli elementi figli */
     inherits: false;
+    /* Valore iniziale della proprietà personalizzata */
     initial-value: 0deg;
 }
 

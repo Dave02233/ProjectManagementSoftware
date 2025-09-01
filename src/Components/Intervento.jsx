@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 //Styles
@@ -8,11 +8,18 @@ export const Intervento = _ => {
     
     const { id } = useParams()
 
-    const intervento = useSelector(store => store.interventi.all?.filter(intervento => intervento.id.toString() === id.toString()))
-
-    const { name, author, description, data, status } = intervento[0];
+    const intervento = useSelector(store => {
+        const all = store.interventi.all;
+        return all ? all.find(intervento => intervento.id.toString() === id.toString()) : null;
+    })
+    
+    if (!intervento) {
+        return <div>Intervento non trovato</div>;
+    }
 
     const [hovering, setHovering] = useState(false);
+
+    const { name, author, description, data, status } = intervento;
 
     const baseColor = status === 'In Corso' ? 'Orange' :
                     status === 'Completato' ? 'Green' :

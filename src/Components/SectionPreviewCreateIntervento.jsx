@@ -10,10 +10,10 @@ export const SectionPreviewCreateIntervento = () => {
 
     return (    
         <>
-            <NavLink to={'/Interventi/Creazione'}>
+            <NavLink to={'/Interventi/Creazione'} className={styles.Link}>
                 <div className={styles.MainContainer}>
-                    <img src="/Images/Add.svg" alt="Creazione Nuovo Intervento" />
                     <h2>Crea un nuovo intervento</h2>
+                    <img src="/Images/Add.svg" alt="Creazione Nuovo Intervento" />
                 </div>
             </NavLink>
         </>
