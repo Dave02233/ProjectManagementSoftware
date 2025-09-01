@@ -14,7 +14,7 @@ export const Intervento = _ => {
     })
     
     if (!intervento) {
-        return <div>Intervento non trovato</div>;
+        return <div className={styles.NotFound}>Intervento non trovato</div>;
     }
 
     const [hovering, setHovering] = useState(false);
@@ -25,14 +25,8 @@ export const Intervento = _ => {
                     status === 'Completato' ? 'Green' :
                     status === 'Annullato' ? 'Red' : 'Grey';
 
-    const statusColor = hovering ? baseColor + 'Active' : baseColor;
-
-    const handleMouseHoverIn = () => setHovering(true);
-    const handleMouseHoverOut = () => setHovering(false);
-
-
     return (
-        <div className={styles.DataContainer} onMouseEnter={handleMouseHoverIn} onMouseLeave={handleMouseHoverOut}>
+        <div className={styles.DataContainer}>
             <h4>Intervento con ID: {id}</h4>
             <h1>Cliente: <span>{name}</span></h1>
             <h2>Autore: <span>{author}</span></h2>
@@ -69,7 +63,7 @@ export const Intervento = _ => {
                     ))}
                 </tbody>
             </table>
-            <h3 className={styles[statusColor]}>Status: {status}</h3>
+            <h3 className={styles[baseColor]}>{status}</h3>
         </div>
     )
 }

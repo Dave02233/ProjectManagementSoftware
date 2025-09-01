@@ -10,7 +10,7 @@
     --text-dark: #2A2E30;                  /* Più scuro del carbone per sfondi chiari */
     --text-dark-hover: #161819;            /* Hover per testo scuro */
     --text-light: #F5F5F5;                 /* Quasi bianco per sfondi scuri */
-    --text-light-hover: #E0E0E0;           /* Hover per testo chiaro */
+    --text-light-hover: #cac8c8;           /* Hover per testo chiaro */
     --text-muted: #6C7174;                 /* Testo attenuato per informazioni secondarie */
     --text-muted-hover: #565A5C;           /* Hover per testo attenuato */
     --text-accent: #A66D84;                /* Versione più scura del rosa per migliore leggibilità */

@@ -22,7 +22,7 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
                     }
                 </h2>
                 <p>{description}</p>
-                <h3 style={{ backgroundColor: statusColor }}>Status: {status}</h3>
+                <h3 style={{ backgroundColor: statusColor }}>{status}</h3>
             </div>
         </NavLink>
     );

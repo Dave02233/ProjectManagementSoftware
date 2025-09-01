@@ -28,7 +28,7 @@ for (let i = 0; i < numberOfDays; i++) {
     days.push(newDay);
 }
 
-const fakeTestData = Array.from({ length: 13 }, (_, i) => ({
+const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
     name: `Intervento ${i+1}`,
     id: i + 1,
     author: 'Dave',

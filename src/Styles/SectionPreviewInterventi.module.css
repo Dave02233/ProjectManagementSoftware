@@ -83,7 +83,7 @@
 
     .DisplayContainer {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
         grid-auto-rows: minmax(9rem, auto);
         gap: 1rem;
                 

@@ -1,3 +1,5 @@
+@import url(./variables.css);
+
 .DataContainer {
     justify-self: center;
 
@@ -8,22 +10,19 @@
 
     gap: 1.4rem;
 
-    width: 66%;
+    width: 60%;
     padding: 1rem;
     border-radius: 10px;
-    background-color: hsla(180, 50%, 35%, 0.8);
-    box-shadow: 0px 3px 1px 3px rgba(0, 229, 255, 0.252);
+    background-color: var(--primary-darkest);
+    box-shadow: 0px 2px 1px 2px var(--primary);
 
     margin: 1rem 0;
-
-    transition: all 0.3s ease-in-out;
 
     hr {
         height: 1px;
         width: 100%;
-        background-color: hsla(180, 50%, 10%, 0.4);
+        background-color: var(--primary);
         border: none;
-        transition: background-color 0.3s ease-in-out;
     }
 
     h1, h2, h3, h4 {
@@ -31,61 +30,38 @@
     }
 
     h1, h2, h3 {
-        color: hsla(180, 50%, 10%, 1);
-       
-        span {
-            transition: color 0.3s ease-in-out;
-            color: rgba(0, 255, 195, 0.522);
-            text-shadow: 0px 1px 0px black;
-        }  
+        color: var(--text-light);
     }
 
     h1, h2 {
         justify-content: center;
         align-items: center;
+
+        font-size: 2rem;
     }
 
     h2 {
         margin: 0;
     }
-    
-    h4 {
-        color: hsla(180, 50%, 35%, 0.5);
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
     }
 
-
-    p {
-        border-radius: 10px;
-        background-color:  hsla(180, 50%, 20%, 0.2);
-        color: hsla(180, 50%, 10%, 0.8);
-
-        padding: 1rem;
-
-        word-break: keep-all;
-        
-        width: 66%;
-        height: 5rem;
-
-        word-spacing: 0.1rem;
-        letter-spacing: 0.05rem;
-
-        text-align: center;
-
-        transition: all 0.3s ease-in-out;
-    }
 
     .MainInput {
-        background-color: hsla(180, 50%, 40%, 0);
-        transition: all 0.3s ease-in-out;
+        background-color: var(--primary);
+        transition: all 0.2s ease-in-out;
     }
 
     table {
         width: 80%;
-
-        border-radius: 10px;
         
         text-align: center;
         border-collapse: collapse;
+
+        background-color: var(--slight-hover);
 
         th {
             padding: 0.5rem;
@@ -93,17 +69,17 @@
 
         th {
             font-size: 1.2rem;
-            color:hsla(180, 50%, 10%, 1);
-            border: 1px solid hsla(180, 50%, 10%, 1);
+            color:var(--text-light);
         }
         
         td {
             font-size: 1.1rem;
             height: 2rem;
 
-            color:hsla(180, 50%, 15%, 0.7);
-            border: 1px solid hsla(180, 50%, 20%, 0.7);
-            transition: color 0.3s ease-in-out;
+            padding: 0.1rem;
+
+            color:var(--primary);
+            border: 1px solid var(--primary);
 
             vertical-align: middle;
             text-align: center;
@@ -115,7 +91,7 @@
                     cursor: pointer; 
                     width: 1.6rem;
                     height: 1.6rem;
-                    transition: transform 0.3s ease-in-out;   
+                    transition: transform 0.1s ease-in-out;   
                     object-fit: cover;            
                 }
             &:hover {
@@ -138,11 +114,9 @@
             padding: 0;
 
             border: none;
-            border-radius: 10px;
 
-            transition: all 0.3s ease-in-out;
-
-            background-color: hsla(180, 50%, 40%, 0);
+            background-color: var(--primary);
+            color: var(--text-dark);
 
             /* Chrome, Safari, Edge, Opera */
             &::-webkit-inner-spin-button, 
@@ -159,45 +133,9 @@
 
 
             &:active, &:focus, &:hover {
-                background-color: hsla(180, 50%, 40%, 0.7);
-                color: rgba(0, 255, 195, 0.522);
+                background-color: var(--primary-darkest);
+                color: var(--text-light-hover);
             }
-        }
-    }
-}
-
-.DataContainer:hover {
-    background-color: hsla(180, 50%, 35%, 1);
-    box-shadow: 0px 2px 0px 1px rgba(0, 229, 255, 0.352);
-
-    h1, h2, h3 {
-        span {
-            color: rgba(0, 255, 195, 0.879);
-        }
-    };
-
-    hr {
-        background-color: hsla(180, 50%, 30%, 0.9);
-    };
-
-    p {
-        background-color:  hsla(180, 50%, 25%, 0.7);
-        color: rgba(0, 255, 195, 0.879);
-    };
-
-    td {
-        color: rgba(0, 255, 195, 0.879);
-        border: 1px solid hsla(180, 50%, 20%, 1);
-    };
-
-    .MainInput {
-        background-color: hsla(180, 50%, 40%, 0.7);
-        color: rgba(0, 255, 195, 0.879);
-    }       
-
-    table {
-        input.TableInput {
-            background-color: hsla(180, 50%, 40%, 0.3);
         }
     }
 }
@@ -208,13 +146,24 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 1.2rem;
+    height: 1.4rem;
+
+
     margin: 1rem;
-    width: 66%;
+    width: 80%;
+
     input {
         height: 100%;
         width: 80%;
         margin-left: 0.5rem;
+        font-size: 1.2rem;
+
+        color: var(--text-dark);
+
+        &:focus {
+            background-color: var(--primary-darkest);
+            color: var(--primary);
+        }
     }
 }
 
@@ -228,10 +177,15 @@
   textarea {
     padding: 0.5rem;
     border-radius: 10px;
-    width: 66%;
+    width: 80%;
     height: 6rem; 
     word-break: break-word; 
     resize: none; 
+
+    &:focus {
+        background-color: var(--primary-darkest);
+        color: var(--primary);
+    }
   }
 }
 
@@ -245,48 +199,39 @@
 }
 
 .StatusButton {
-    width: 66%;
-    height: 1.5rem;
+    width: 50%;
+    height: 2rem;
     text-align: center;
 
-    border-top: 2px solid hsla(180, 50%, 10%, 1);
-    border-left: 2px solid hsla(180, 50%, 10%, 1);
-    border-right: 2px solid rgb(147, 150, 150);
-    border-bottom: 2px solid rgb(147, 150, 150);
+    font-size: 1rem;
+
+    border-top: 2px solid var(--primary-darkest);
+    border-left: 2px solid var(--primary-darkest);
+    border-right: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
 
     border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
-        border-top: 2px solid hsla(180, 50%, 30%, 1);
-        border-left: 2px solid hsla(180, 50%, 30%, 1);
-        border-right: 2px solid hsla(180, 50%, 10%, 1);
-        border-bottom: 2px solid hsla(180, 50%, 10%, 1);
+        border-top: 2px solid var(--primary);
+        border-left: 2px solid var(--primary);
+        border-right: 2px solid var(--primary-darkest);
+        border-bottom: 2px solid var(--primary-darkest);
     }
 }
 
 
 .Green {
-    background-color: hsla(131, 100%, 30%, 0.400);
-}
-.GreenActive {
-    background-color: hsla(131, 100%, 50%, 0.400);
+    background-color: hsla(131, 100%, 50%, 0.5);
 }
 .Orange {
-    background-color: hsla(44, 100%, 30%, 0.650);
-}
-.OrangeActive {
     background-color: hsla(44, 100%, 50%, 0.650);
 }
 .Red {
-    background-color: hsla(0, 100%, 30%, 0.60);
-}
-.RedActive {
     background-color: hsla(0, 100%, 50%, 0.60);
 }
 .Grey {
-    background-color: hsla(0, 2%, 50%, 0.60);
-}
-.GreyActive {
     background-color: hsla(0, 2%, 70%, 0.60);
 }
+
