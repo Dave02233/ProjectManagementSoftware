@@ -4,7 +4,7 @@ import styles from '../Styles/PreviewIntervento.module.css';
 
 export const PreviewIntervento = ({ intervento, isLoading, error }) => {
 
-    const { id, name, description, data, status} = intervento;
+    const { id, clientName, description, data, status} = intervento;
 
     const statusColor = status === 'In Corso' ? 'hsla(44, 100%, 50%, 0.650)' : 
                 status === 'Completato' ? 'hsla(131, 100%, 50%, 0.400)' : 
@@ -13,7 +13,7 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
     return (
         <NavLink to={`/Interventi/${id}`}>
             <div className={styles.PreviewInterventoContainer}>
-                <h1>{name}</h1>
+                <h1>{clientName}</h1>
                 <h2>
                     {data[0].date}
                     { 

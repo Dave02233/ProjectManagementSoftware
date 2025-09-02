@@ -19,7 +19,7 @@ export const Intervento = _ => {
 
     const [hovering, setHovering] = useState(false);
 
-    const { name, author, description, data, status } = intervento;
+    const { clientName, author, description, data, status } = intervento;
 
     const baseColor = status === 'In Corso' ? 'Orange' :
                     status === 'Completato' ? 'Green' :
@@ -28,7 +28,7 @@ export const Intervento = _ => {
     return (
         <div className={styles.DataContainer}>
             <h4>Intervento con ID: {id}</h4>
-            <h1>Cliente: <span>{name}</span></h1>
+            <h1>Cliente: <span>{clientName}</span></h1>
             <h2>Autore: <span>{author}</span></h2>
             {
                 data.length > 1 

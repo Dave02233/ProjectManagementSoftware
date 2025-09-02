@@ -11,6 +11,24 @@ const fetchData = createAsyncThunk('interventi/fetchData',
     }
 });
 
+const addData = createAsyncThunk('interventi/addData', 
+    async (interventoData) => {
+        console.log('adding Data...')
+        const response = await fetch('/api/addIntervento', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(interventoData)
+        });
+        if (response.ok) {
+        return await response.json();
+        } else {
+            throw new Error('Aggiunta intervento fallita');
+        }
+    }
+);
+
 
 // Dati fittizi da cancellare quando Daniele farà il backend
 import { randomChances } from '../../Functions/randomChances.js';
@@ -29,7 +47,7 @@ for (let i = 0; i < numberOfDays; i++) {
 }
 
 const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
-    name: `Intervento ${i+1}`,
+    clientName: `NomeCliente ${i+1}`,
     id: i + 1,
     author: 'Dave',
     description: `Descrizione dell'intervento ${i+1}`,
@@ -49,8 +67,18 @@ const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
 const sliceOptions = {
     name: 'interventi',
     initialState: {
-        loadingInterventi: false,
-        errorLoadingInterventi: false,
+        requests: {
+            fetch : {
+                pending: false,
+                error: false,
+                fulfilled: false
+            },
+            add: {
+                pending: false,
+                error: false,
+                fulfilled: false
+            }
+        },
         all: fakeTestData,
         filteredData: fakeTestData,
         filter: ''
@@ -66,26 +94,50 @@ const sliceOptions = {
             }
         },
         resetFilteredData: (state) => {
-        state.filter = '';
-        state.filteredData = state.all;
+            state.filter = '';
+            state.filteredData = state.all;
         }
         },
     extraReducers: (builder) => {
         builder
+        //Fetch Data
         .addCase(fetchData.pending, (state) => {
-            state.loadingInterventi = true;
-            state.errorLoadingInterventi = false;
+            state.requests.fetch.pending = true;
+            state.requests.fetch.error = false;
+            state.requests.fetch.fulfilled = false;
         })
         .addCase(fetchData.fulfilled, (state, action) => {
-            state.loadingInterventi = false;
-            state.errorLoadingInterventi = false;
+            state.requests.fetch.pending = false;
+            state.requests.fetch.error = false;
+            state.requests.fetch.fulfilled = true;
             state.all = action.payload;
             state.filteredData = action.payload;
         })
         .addCase(fetchData.rejected, (state) => {
-            state.loadingInterventi = false;
-            state.errorLoadingInterventi = true;
+            state.requests.fetch.pending = false;
+            state.requests.fetch.error = true;
+            state.requests.fetch.fulfilled = false;
         })
+        //Add Data
+        .addCase(addData.pending, (state) => {
+            state.requests.add.pending = true;
+            state.requests.add.error = false;
+            state.requests.add.fulfilled = false;
+        })
+        .addCase(addData.fulfilled, (state) => {
+            state.requests.add.pending = false;
+            state.requests.add.error = false;
+            state.requests.add.fulfilled = true;   
+        })
+        .addCase(addData.rejected, (state) => {
+            state.requests.add.pending = false;
+            state.requests.add.error = true;
+            state.requests.add.fulfilled = false;   
+        })
+        //Modify Data
+
+        //Remove Data
+
         .addDefaultCase((state, action) => {
             if (!action.type.startsWith('@@redux')) {
             console.warn('Azione non riconosciuta nel reducer di interventiSlice:', action.type);
@@ -97,4 +149,4 @@ const sliceOptions = {
 
 export const interventiSlice = createSlice(sliceOptions);
 export const { setFilteredData, resetFilteredData } = interventiSlice.actions;
-export { fetchData };
+export { fetchData, addData };
