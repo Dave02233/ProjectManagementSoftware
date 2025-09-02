@@ -1,16 +1,19 @@
+@import url('./variables.css');
+
 .NotFound {
     justify-content: center;
     align-items: center;
     text-align: center;
 
     margin: 0;
+    width: 100%;
 
-    color: hsla(193, 100%, 10%, 0.8);
+    color: var(--primary);
     text-shadow: 0px 0px 0px hsla(0, 0%, 0%, 1);
 
 }
 
-.PreviewInterventiContainer {
+.MainContainer {
     display: flex;
     flex-direction: column;
 
@@ -19,12 +22,71 @@
     border-radius: 10px;
     box-shadow: 0px 5px 2px 3px rgba(0, 229, 255, 0.218);
 
-    background-color: hsla(180, 50%, 35%, 0.8);
+    background-color: var(--primary-darkest);
 
-    padding: 5%;
+    padding: 1rem;
 
     h1 {
         margin: 0;
+    }
+
+    .UtilitiesContainer {
+
+        display: flex;
+        flex-direction: row;
+
+        justify-content: center;
+        align-items: center;
+
+        padding: 0.5rem 0;
+
+        width: 100%;
+
+        .Filtro {
+            display: border-box;
+
+            width: 100%;
+            height: 1.3rem;
+
+            font-size: 1.1rem;
+
+            border-radius: 5px;
+
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+
+            background-color: var(--primary-darkest-hover);
+            color: var(--text-light);
+
+            padding: 0.1rem;
+
+            &::placeholder {
+                color: var(--text-accent);
+                &:hover {
+                    color: var(--text-accent-hover);
+                }
+            }
+
+            border-top: 2px dotted  var(--accent-pink);
+            border-left: 2px dotted  var(--accent-pink);
+            border-right: 2px dotted  var(--accent-pink);
+            border-bottom: 2px solid  var(--accent-pink);
+
+            transition: all 0.2s ease-in-out;
+        }
+
+        .Filtro:hover, .Filtro:focus {
+            background-color: var(--primary-lightest);
+        }
+    }
+
+    .DisplayContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        grid-auto-rows: minmax(9rem, auto);
+        gap: 1rem;
+                
     }
 }
 
@@ -32,11 +94,15 @@
     border-radius: 5px;
     border: 1px;
 
-    background-color: hsla(100, 100%, 100%, 0.1);
+    padding: 0.2rem;
+
+    font-size: 0.8rem;
+
+    background-color: var(--primary-lightest);
     transition: all 0.3s ease-in-out;
 }
 
 .AddReducedData:hover {
-    font-size: larger;
-    background-color: hsla(100, 100%, 100%, 0.6);
+    font-size: 0.85rem;
 }
+

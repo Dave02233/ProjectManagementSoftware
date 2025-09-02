@@ -1,0 +1,40 @@
+@import url(./variables.css);
+
+
+.NotFoundContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 75vh;
+    place-items: center;
+
+    width: 100%;
+
+    h1, img {
+        grid-row: 1;
+        grid-column: 1;
+    }
+
+    h1 {
+        background-color: var(--primary-darkest);
+        width: 100%;
+        text-align: center;
+        color: var(--text-light);
+        margin: 0;
+
+        z-index: 2;
+    }
+
+    img {
+        max-width: 25%;
+        z-index: 1;
+    };
+
+    a {
+        color: var(--text-interactive);
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: var(--text-interactive-hover);
+        }
+    }
+}

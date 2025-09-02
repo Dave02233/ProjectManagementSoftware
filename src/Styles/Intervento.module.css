@@ -1,3 +1,20 @@
+@import url(./variables.css);
+
+
+.NotFound {
+    font-size: 5rem;
+    background-color: var(--primary-darkest);
+    color: var(--text-accent);
+
+    margin: 2rem 0;
+    
+    text-align: center;
+    align-content: center;
+
+    width: 100%;
+    height: 20rem;
+}
+
 .DataContainer {
     justify-self: center;
 
@@ -8,22 +25,21 @@
 
     gap: 1.4rem;
 
-    width: 66%;
+    width: 60%;
     padding: 1rem;
     border-radius: 10px;
-    background-color: hsla(180, 50%, 35%, 0.8);
-    box-shadow: 0px 3px 1px 3px rgba(0, 229, 255, 0.252);
+    background-color: var(--primary-darkest);
+    box-shadow: 0px 2px 1px 2px var(--primary);
 
     margin: 1rem 0;
 
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
 
     hr {
         height: 1px;
         width: 100%;
-        background-color: hsla(180, 50%, 10%, 0.4);
+        background-color: var(--primary);
         border: none;
-        transition: background-color 0.3s ease-in-out;
     }
 
     h1, h2, h3, h4 {
@@ -31,15 +47,14 @@
     }
 
     h4 {
-        color: hsla(180, 50%, 35%, 0.5);
+        color: var(--text-light);
     }
 
     h1, h2 {
-        color: hsla(180, 50%, 10%, 1);
+        color: var(--text-light);
        
         span {
-            transition: color 0.3s ease-in-out;
-            color: rgba(0, 255, 195, 0.522);
+            color: var(--primary);
             text-shadow: 0px 1px 0px black;
         }  
     }
@@ -49,23 +64,22 @@
     }
 
     h3 {
-        width: 66%;
+        width: 50%;
         border-radius: 10px;
         padding: 0.5rem;
         text-align: center;
-        transition: background-color 0.3s ease-in-out;
     }
 
     p {
         border-radius: 10px;
-        background-color:  hsla(180, 50%, 20%, 0.2);
-        color: hsla(180, 50%, 10%, 0.8);
+        background-color:  var(--slight-hover);
+        color: var(--primary);
 
         padding: 1rem;
 
         word-break: keep-all;
         
-        width: 66%;
+        width: 80%;
         height: 5rem;
 
         word-spacing: 0.1rem;
@@ -90,13 +104,13 @@
 
         th {
             font-size: 1.2rem;
-            color:hsla(180, 50%, 10%, 1);
-            border: 1px solid hsla(180, 50%, 10%, 1);
+            color:var(--text-light);
+            border: none var(--primary);
         };
         td {
             font-size: 1.1rem;
-            color:hsla(180, 50%, 15%, 0.7);
-            border: 1px solid hsla(180, 50%, 20%, 0.7);
+            color:var(--primary);
+            border: 1px solid var(--primary);
             transition: color 0.3s ease-in-out;
         }   
         
@@ -104,53 +118,16 @@
 
 }
 
-.DataContainer:hover {
-    background-color: hsla(180, 50%, 35%, 1);
-    box-shadow: 0px 2px 0px 1px rgba(0, 229, 255, 0.352);
-
-    h1, h2 {
-        span {
-            color: rgba(0, 255, 195, 0.879);
-        }
-    };
-
-    hr {
-        background-color: hsla(180, 50%, 30%, 0.9);
-    };
-
-    p {
-        background-color:  hsla(180, 50%, 25%, 0.7);
-        color: rgba(0, 255, 195, 0.879);
-    };
-
-    td {
-        color: rgba(0, 255, 195, 0.879);
-        border: 1px solid hsla(180, 50%, 20%, 1);
-    }
-}
-
 
 .Green {
-    background-color: hsla(131, 100%, 30%, 0.400);
-}
-.GreenActive {
-    background-color: hsla(131, 100%, 50%, 0.400);
+    background-color: hsla(131, 100%, 50%, 0.5);
 }
 .Orange {
-    background-color: hsla(44, 100%, 30%, 0.650);
-}
-.OrangeActive {
     background-color: hsla(44, 100%, 50%, 0.650);
 }
 .Red {
-    background-color: hsla(0, 100%, 30%, 0.60);
-}
-.RedActive {
     background-color: hsla(0, 100%, 50%, 0.60);
 }
 .Grey {
-    background-color: hsla(0, 2%, 50%, 0.60);
-}
-.GreyActive {
     background-color: hsla(0, 2%, 70%, 0.60);
 }

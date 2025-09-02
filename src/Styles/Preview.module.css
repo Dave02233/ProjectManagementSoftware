@@ -1,3 +1,5 @@
+@import url('./variables.css');
+
 .MainContainer {
     justify-content: center;
     align-items: center;
@@ -5,13 +7,12 @@
 
 .PreviewContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
 
     width: 100%;
 
-    justify-content: space-evenly;
-    align-items: flex-start;
+    align-items: center;
 
     justify-self: center;
 
@@ -22,91 +23,7 @@
 }
 
 .PreviewContainer > * {
-    width: 45%;
+    width: 90%;
 }
 
-.MainTitle {
-    text-align: center;
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-
-    justify-content: space-between;
-    align-items: center;
-
-    background-color: hsla(180, 50%, 50%, 0.1);
-
-    h1 {
-        margin: 0.5rem;
-        color: hsla(180, 45%, 40%, 1)
-    }
-
-    button {
-        margin: 0.5rem;
-        height: 2rem;
-        width: 5rem;
-
-        background-color: hsla(180, 50%, 35%, 0.7);
-        color: rgb(205, 229, 229);
-
-        font-weight: 500;
-        font-size: 1.2rem;
-
-        transition: all 0.3s ease-in-out;
-
-        border-top: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-left: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-right: 2px solid  hsla(180, 49%, 10%, 0.8);
-        border-bottom: 2px solid  hsla(180, 49%, 10%, 0.8);
-    }
-
-    button:hover {
-        background-color: rgb(205, 229, 229);
-        color: hsla(180, 50%, 35%, 0.7);
-
-        font-weight: 600;
-    }
-
-}
-
-.UtilitiesContainer {
-
-    display: flex;
-    flex-direction: row;
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 0.5rem 0;
-
-    width: 100%;
-
-    .Filtro {
-        display: border-box;
-
-        width: 50%;
-        height: 1.3rem;
-
-        font-size: 1.1rem;
-
-        border-radius: 5px;
-
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-
-        border-top: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-left: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-right: 2px solid  hsla(180, 49%, 10%, 0.8);
-        border-bottom: 2px solid  hsla(180, 49%, 10%, 0.8);
-
-        transition: all 0.3s ease-in-out;
-    }
-
-    .Filtro:hover, .Filtro:focus {
-        background-color: hsla(180, 49%, 36%, 0.6);
-        color: rgb(176, 235, 235);
-    }
-}
 

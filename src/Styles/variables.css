@@ -1,0 +1,21 @@
+:root {
+    /* https://coolors.co/393d3f-d5bbb1-9cc4b2-c98ca7-e76d83 */
+    --primary-darkest: #393D3F;   
+    --primary: #D5BBB1;          
+    --primary-lightest: #9CC4B2;  
+    --accent-pink: #C98CA7;      
+    --accent-red: #E76D83;  
+    --slight-hover: #2d2f312a;   
+
+    --text-dark: #2A2E30;                  /* Più scuro del carbone per sfondi chiari */
+    --text-dark-hover: #161819;            /* Hover per testo scuro */
+    --text-light: #F5F5F5;                 /* Quasi bianco per sfondi scuri */
+    --text-light-hover: #cac8c8;           /* Hover per testo chiaro */
+    --text-muted: #6C7174;                 /* Testo attenuato per informazioni secondarie */
+    --text-muted-hover: #565A5C;           /* Hover per testo attenuato */
+    --text-accent: #A66D84;                /* Versione più scura del rosa per migliore leggibilità */
+    --text-accent-hover: #8C5770;          /* Hover per testo accentato */
+
+    --text-interactive: #7A9B8E;   /* Testo interattivo */
+    --text-interactive-hover: #5C7D70; /* Testo interattivo su hover */
+}

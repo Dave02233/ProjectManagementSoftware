@@ -1,3 +1,5 @@
+@import url('../Styles/variables.css');
+
 .MainTitle {
     text-align: center;
     width: 100%;
@@ -8,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: hsla(180, 50%, 50%, 0.1);
+    background-color: var(--primary-darkest);
 
     a {
         text-decoration: none;
@@ -17,38 +19,12 @@
 
     h1 {
         margin: 0.5rem;
-        color: hsla(180, 45%, 40%, 1);
-        transition: color 0.3s ease-in-out;
+        color: var(--text-light);
+        transition: color 0.1s ease-in-out;
     }
 
     h1:hover {
-        color: hsla(180, 45%, 65%, 1);
-    }
-
-    button {
-        margin: 0.5rem;
-        height: 2rem;
-        width: 5rem;
-
-        background-color: hsla(180, 50%, 35%, 0.7);
-        color: rgb(205, 229, 229);
-
-        font-weight: 500;
-        font-size: 1.2rem;
-
-        transition: all 0.3s ease-in-out;
-
-        border-top: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-left: 2px solid  hsla(180, 49%, 36%, 0.6);
-        border-right: 2px solid  hsla(180, 49%, 10%, 0.8);
-        border-bottom: 2px solid  hsla(180, 49%, 10%, 0.8);
-    }
-
-    button:hover {
-        background-color: rgb(205, 229, 229);
-        color: hsla(180, 50%, 35%, 0.7);
-
-        font-weight: 600;
+        color: var(--text-light-hover);
     }
 
 }

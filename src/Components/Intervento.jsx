@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 //Styles
@@ -8,24 +8,25 @@ export const Intervento = _ => {
     
     const { id } = useParams()
 
-    const intervento = useSelector(store => store.interventi.all?.filter(intervento => intervento.id.toString() === id.toString()))
-
-    const { name, author, description, data, status } = intervento[0];
+    const intervento = useSelector(store => {
+        const all = store.interventi.all;
+        return all ? all.find(intervento => intervento.id.toString() === id.toString()) : null;
+    })
+    
+    if (!intervento) {
+        return <div className={styles.NotFound}>Intervento non trovato</div>;
+    }
 
     const [hovering, setHovering] = useState(false);
+
+    const { name, author, description, data, status } = intervento;
 
     const baseColor = status === 'In Corso' ? 'Orange' :
                     status === 'Completato' ? 'Green' :
                     status === 'Annullato' ? 'Red' : 'Grey';
 
-    const statusColor = hovering ? baseColor + 'Active' : baseColor;
-
-    const handleMouseHoverIn = () => setHovering(true);
-    const handleMouseHoverOut = () => setHovering(false);
-
-
     return (
-        <div className={styles.DataContainer} onMouseEnter={handleMouseHoverIn} onMouseLeave={handleMouseHoverOut}>
+        <div className={styles.DataContainer}>
             <h4>Intervento con ID: {id}</h4>
             <h1>Cliente: <span>{name}</span></h1>
             <h2>Autore: <span>{author}</span></h2>
@@ -62,7 +63,7 @@ export const Intervento = _ => {
                     ))}
                 </tbody>
             </table>
-            <h3 className={styles[statusColor]}>Status: {status}</h3>
+            <h3 className={styles[baseColor]}>{status}</h3>
         </div>
     )
 }

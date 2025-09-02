@@ -1,3 +1,4 @@
+@import url(./variables.css);
 
 .niceButton {
     display: grid;
@@ -25,7 +26,7 @@
         height: 100%;
 
         --angle: 0deg;
-        background: conic-gradient(from var(--angle), red, orange, yellow, green, blue, indigo, violet);
+        background: conic-gradient(from var(--angle),var(--primary-lightest), var(--text-dark), var(--text-dark), var(--text-dark), var(--text-dark), var(--text-dark-hover));
 
         animation: spin-colors 6s linear infinite;
         filter: blur(4px);
@@ -42,7 +43,7 @@
 
         box-shadow: 0 2px 3px rgba(43, 43, 43, 0.6);
 
-        background-color: rgba(171, 169, 169, 0.4);
+        background-color: rgba(171, 169, 169, 0.1);
         border-radius: var(--borderRadius);
         
         z-index: 2;
@@ -91,7 +92,7 @@
         transition: 0.3s all ease-in-out;
 
         background: conic-gradient(from var(--angle), #f8d1d1, #e4d9af, #d8f8d8, #ccf2ff, #d3d3fc, #efdbfc, #dbecfb);
-        animation: spin-colors 6s linear infinite;
+        animation: spin-colors 4s linear infinite;
 
         -webkit-background-clip: text;
         background-clip: text;
@@ -113,10 +114,13 @@
     }
 }
 
-/* Un casino per farlo funzionare ma bello */
+/* Utilizzo variabili come proprietà del keyframe */
+/* Definisce la sintassi della proprietà personalizzata come un angolo */
 @property --angle {
     syntax: '<angle>';
+    /* Indica che la proprietà non viene ereditata dagli elementi figli */
     inherits: false;
+    /* Valore iniziale della proprietà personalizzata */
     initial-value: 0deg;
 }
 
