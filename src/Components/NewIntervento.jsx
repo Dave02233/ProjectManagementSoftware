@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react"
+//Store
+import { useSelector } from "react-redux"
 //Styles
 import styles from '../Styles/NewIntervento.module.css'
 
 export const NewIntervento = _ => {
+
+    const interventi = useSelector(state => state.interventi);
+    const clienti = interventi.all.map(i => i.name);
+    const autori = interventi.all.map(i => i.author);
 
     const [ newIntervento, setNewIntervento ] = useState({
         name: '',
@@ -85,14 +91,37 @@ export const NewIntervento = _ => {
                     <h1>
                         Cliente: 
                     </h1>
-                    <input name="name" className={styles.MainInput} maxLength={20} value={newIntervento.name} onChange={handleChangeProperty} required />
+                    <input
+                        name="name"
+                        className={styles.MainInput}
+                        maxLength={20}
+                        value={newIntervento.name}
+                        onChange={handleChangeProperty}
+                        list="clienti"
+                        required
+                    />
+                    <datalist id="clienti">
+                    {
+                        clienti.map(cliente => (
+                            <option key={cliente} value={cliente} />
+                        ))
+                    }
+                    </datalist>
                 </div>
 
                 <div className={styles.TitleInputContainer}>
                     <h1>
                         Autore:
                     </h1>
-                    <input name="author" className={styles.MainInput} maxLength={20} value={newIntervento.author} onChange={handleChangeProperty}  required />
+                    <input name="author" className={styles.MainInput} maxLength={20} value={newIntervento.author} onChange={handleChangeProperty} list="author"  required />
+                    <datalist id="author">
+                    {
+                        autori.map(autori => {
+                            autori.include()
+                        })
+                                  
+                    }
+                    </datalist>
                 </div>
             
                 <hr />
