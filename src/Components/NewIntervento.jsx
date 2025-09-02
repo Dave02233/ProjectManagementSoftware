@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 //Store
 import { useDispatch, useSelector } from "react-redux"
 import { addData } from "../Store/Slices/interventiSlice"
@@ -7,6 +7,8 @@ import { addData } from "../Store/Slices/interventiSlice"
 import styles from '../Styles/NewIntervento.module.css'
 
 export const NewIntervento = _ => {
+    const navigate = useNavigate()
+
     const dispatch = useDispatch();
     const interventi = useSelector(state => state.interventi);
     const requestState = useSelector(state => state.interventi.requests);
@@ -95,13 +97,9 @@ export const NewIntervento = _ => {
     }
 
     //ErrorHandling
-    const redirect = _ => {
-        return <Navigate to={"/"}></Navigate>
-    }
-
-    if(requestState.add.error){
-        setTimeout(redirect, 1000)
-    } 
+    useEffect(_ => {
+        requestState.add.error ? setTimeout(_=>navigate('/'), 2000) : null
+    }, [requestState.add.error])
 
     return (
         <>
