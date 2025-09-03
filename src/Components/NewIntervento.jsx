@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react"
-import { Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 //Store
 import { useDispatch, useSelector } from "react-redux"
 import { addData } from "../Store/Slices/interventiSlice"
 //Styles
 import styles from '../Styles/NewIntervento.module.css'
+//Components
+import { StatusBox } from "./SingleItems/StatusBox"
 
 export const NewIntervento = _ => {
+
     const navigate = useNavigate()
 
     const dispatch = useDispatch();
     const interventi = useSelector(state => state.interventi);
     const requestState = useSelector(state => state.interventi.requests);
 
+
     useEffect(_ => console.log(requestState), [requestState]);
 
-    // Con new Set rimuovo i duplicati e rimuovo null se presenti
+    // Con new Set rimuovo i duplicati e rimuovo null se presenti    
     const clienti = [...new Set(interventi.all.map(i => i.clientName))];
     const autori = [...new Set(interventi.all.map(i => i.author))];
-
+    
     const [ newIntervento, setNewIntervento ] = useState({
         clientName: '',
         author: '',
@@ -38,8 +42,6 @@ export const NewIntervento = _ => {
             [name]: value
         }))
     };
-
-    //useEffect((() => console.log(newIntervento)), [newIntervento]);
 
     const handleClickChangeStatus = _ => {
         const statuses = ['In Corso', 'Completato', 'Annullato', 'In Attesa'];
@@ -91,16 +93,19 @@ export const NewIntervento = _ => {
         });
     }
 
+    //Form
     const handleSubmit = event => {
+        console.log('Submit Form')
         event.preventDefault();
         dispatch(addData(event.target));
     }
 
-    //ErrorHandling
+    /*ErrorHandling
     useEffect(_ => {
         requestState.add.error ? setTimeout(_=>navigate('/'), 2000) : null
     }, [requestState.add.error])
-
+    */
+   
     return (
         <>
             <form className={styles.DataContainer} onSubmit={handleSubmit}>
@@ -113,7 +118,7 @@ export const NewIntervento = _ => {
                             name="clientName"
                             className={styles.MainInput}
                             maxLength={20}
-                            value={newIntervento.name}
+                            value={newIntervento.clientName}
                             onChange={handleChangeProperty}
                             list="clienti"
                             required
@@ -136,8 +141,7 @@ export const NewIntervento = _ => {
                         {
                             autori.map(autore => (
                                 <option key={autore} id={autore}>{autore}</option>
-                            ))
-                                    
+                            ))    
                         }
                         </datalist>
                     </div>
@@ -197,6 +201,7 @@ export const NewIntervento = _ => {
                     : <h4>No operation</h4>
                 }
             </div>
+            <StatusBox boxStatus={requestState.add}/>
         </>
     )
 }
