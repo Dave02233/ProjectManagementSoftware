@@ -26,9 +26,9 @@
         height: 100%;
 
         --angle: 0deg;
-        background: conic-gradient(from var(--angle),var(--primary-lightest), var(--text-dark), var(--text-dark), var(--text-dark), var(--text-dark), var(--text-dark-hover));
+        background: conic-gradient(from var(--angle),var(--primary-lightest) 0% 10%, var(--text-dark-hover)10% 70%, var(--text-dark) 70% 100%);
 
-        animation: spin-colors 6s linear infinite;
+        animation: spin-colors 8s linear infinite;
         filter: blur(4px);
 
         border-radius: var(--borderRadius);
@@ -91,8 +91,9 @@
 
         transition: 0.3s all ease-in-out;
 
-        background: conic-gradient(from var(--angle), #f8d1d1, #e4d9af, #d8f8d8, #ccf2ff, #d3d3fc, #efdbfc, #dbecfb);
-        animation: spin-colors 4s linear infinite;
+        /*background: conic-gradient(from var(--angle),var(--text-dark-hover) 0% 10%, var(--primary-lightest)10% 70%, var(--primary-lightest) 70% 100%);*/
+        background-color: white;
+        animation: spin-colors 8s linear infinite;
 
         -webkit-background-clip: text;
         background-clip: text;

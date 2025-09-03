@@ -27,13 +27,17 @@ export const NewIntervento = _ => {
         clientName: '',
         author: '',
         description: '',
-        data: [],
-        status: 'In Attesa'
+        data: [{
+            workingHours: 8,
+            travelHours: 2,
+            km: 50
+        }],
+        status: 'In Corso'
     }) 
 
-    const statusColor = newIntervento.status === 'In Corso' ? 'hsla(44, 100%, 50%, 0.65)' : 
-                        newIntervento.status === 'Completato' ? 'hsla(131, 100%, 50%, 0.400)' : 
-                        newIntervento.status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.60)' : 'hsla(0, 2%, 70%, 0.60)';
+    const statusColor = newIntervento.status === 'In Corso' ? 'hsla(36, 100%, 50%, 1.0)' : 
+                        newIntervento.status === 'Completato' ? 'hsla(131, 100%, 50%, 0.600)' : 
+                        newIntervento.status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
     
     const handleChangeProperty = (event) => {
         const { name, value } = event.target;
@@ -188,19 +192,8 @@ export const NewIntervento = _ => {
                     </tbody>
                 </table>
                 <button type="button" className={styles.StatusButton} style={{backgroundColor: statusColor}} onClick={handleClickChangeStatus}>Status: {newIntervento.status}</button>
-                <button type="submit">Invia</button>
+                <button type="submit" className={styles.SubmitButton}>Invia</button>
             </form>
-            <div className={styles.InfoBox}>
-                {
-                    requestState.add?.error 
-                    ? <h3>Error</h3>
-                    : requestState.add?.pending 
-                    ? <h3>Pending</h3> 
-                    : requestState.add?.fulfilled 
-                    ? <h3>Fulfilled</h3>
-                    : <h4>No operation</h4>
-                }
-            </div>
             <StatusBox boxStatus={requestState.add}/>
         </>
     )

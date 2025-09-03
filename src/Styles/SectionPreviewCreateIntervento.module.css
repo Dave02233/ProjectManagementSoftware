@@ -30,10 +30,6 @@
     &:hover {
         background-color: var(--slight-hover);
 
-        h2 {
-            color: var(--text-light-hover);
-        }
-
         img {
             scale: 1.2;
             animation: addFastRotation 1s linear infinite;

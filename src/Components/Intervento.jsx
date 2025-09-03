@@ -21,9 +21,9 @@ export const Intervento = _ => {
 
     const { clientName, author, description, data, status } = intervento;
 
-    const baseColor = status === 'In Corso' ? 'Orange' :
-                    status === 'Completato' ? 'Green' :
-                    status === 'Annullato' ? 'Red' : 'Grey';
+    const statusColor = status === 'In Corso' ? 'hsla(36, 100%, 50%, 1.0)' : 
+                status === 'Completato' ? 'hsla(131, 100%, 50%, 0.600)' : 
+                status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
 
     return (
         <div className={styles.DataContainer}>
@@ -63,7 +63,7 @@ export const Intervento = _ => {
                     ))}
                 </tbody>
             </table>
-            <h3 className={styles[baseColor]}>{status}</h3>
+            <h3 style={{backgroundColor: `${statusColor}`}}>{status}</h3>
         </div>
     )
 }
