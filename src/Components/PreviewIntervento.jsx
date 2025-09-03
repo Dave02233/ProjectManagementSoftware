@@ -6,9 +6,9 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
 
     const { id, clientName, description, data, status} = intervento;
 
-    const statusColor = status === 'In Corso' ? 'hsla(44, 100%, 50%, 0.650)' : 
-                status === 'Completato' ? 'hsla(131, 100%, 50%, 0.400)' : 
-                status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.60)' : 'hsla(0, 2%, 70%, 0.60)';
+    const statusColor = status === 'In Corso' ? 'hsla(36, 100%, 50%, 1.0)' : 
+                status === 'Completato' ? 'hsla(131, 100%, 50%, 0.600)' : 
+                status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
 
     return (
         <NavLink to={`/Interventi/${id}`}>

@@ -1,8 +1,8 @@
 :root {
     /* https://coolors.co/393d3f-d5bbb1-9cc4b2-c98ca7-e76d83 */
     --primary-darkest: #393D3F;   
-    --primary: #D5BBB1;          
-    --primary-lightest: #9CC4B2;  
+    --primary: #eeeeee;          
+    --primary-lightest: #ffffff;  
     --accent-pink: #C98CA7;      
     --accent-red: #E76D83;  
     --slight-hover: #2d2f312a;   

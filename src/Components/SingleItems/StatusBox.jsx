@@ -21,7 +21,7 @@ export const StatusBox = ({ boxStatus }) => {
             setVisibility(true);       
             timeout = setTimeout(_=>{
                 setVisibility(false)
-            }, 5000)
+            }, 6000)
         }  
 
         if (pending) {
