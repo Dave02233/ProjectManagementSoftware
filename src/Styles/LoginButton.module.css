@@ -25,7 +25,6 @@
         width: 100%;
         height: 100%;
 
-        --angle: 0deg;
         background: conic-gradient(from var(--angle),var(--primary-lightest) 0% 10%, var(--text-dark-hover)10% 70%, var(--text-dark) 70% 100%);
 
         animation: spin-colors 8s linear infinite;
@@ -93,7 +92,7 @@
 
         /*background: conic-gradient(from var(--angle),var(--text-dark-hover) 0% 10%, var(--primary-lightest)10% 70%, var(--primary-lightest) 70% 100%);*/
         background-color: white;
-        animation: spin-colors 8s linear infinite;
+        /*animation: spin-colors 8s linear infinite;*/
 
         -webkit-background-clip: text;
         background-clip: text;
