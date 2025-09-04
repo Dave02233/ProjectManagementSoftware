@@ -87,7 +87,7 @@ const sliceOptions = {
         setFilteredData: (state, action) => {
             state.filter = action.payload;
             if (state.filter) {
-                state.filteredData = state.all.filter(intervento => intervento.name.toLowerCase().includes(state.filter.toLowerCase())
+                state.filteredData = state.all.filter(intervento => intervento.clientName.toLowerCase().includes(state.filter.toLowerCase())
                 );
             } else {
                 state.filteredData = state.all;
