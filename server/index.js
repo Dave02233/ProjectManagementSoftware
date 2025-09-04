@@ -32,7 +32,7 @@ for (let i = 0; i < numberOfDays; i++) {
     days.push(newDay);
 }
 
-const fakeTestData = Array.from({ length: 10000 }, (_, i) => ({
+const fakeTestData = Array.from({ length: 100000 }, (_, i) => ({
     clientName: `NomeCliente ${i+1}`,
     id: i + 1,
     author: 'Dave',
@@ -51,26 +51,30 @@ const fakeTestData = Array.from({ length: 10000 }, (_, i) => ({
 app.get('/fakeData', (req, res) => {
 
   const limit = parseInt(req.query.limit) || 1000; 
+
   const filter = req.query.filter;
   const end = limit + 10;
   const pageData = fakeTestData.slice(0, end);
   let filteredData = [];
+  let filteredDataSliced = [];
 
   if (filter) {
     const param = filter.toLowerCase();
     filteredData = fakeTestData.filter(item =>
       item.clientName.toLowerCase().includes(param)
-    );
+    )
   } else {
     filteredData = pageData;
   }
+  filteredDataSliced = filteredData.slice(0, end);
 
   console.log('Sending Data...')
 
   res.json({
     total: fakeTestData.length, 
+    filteredTotal: filteredData.length,
     data: pageData,
-    filteredData: filteredData
+    filteredData: filteredDataSliced
   });
 
 });

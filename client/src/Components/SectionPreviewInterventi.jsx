@@ -14,9 +14,11 @@ export const SectionPreviewInterventi = _ => {
 
     // Store setup
     const dispatch = useDispatch();
-    const interventi = useSelector((state) => state.interventi.filteredData);
-    const requestStatus = useSelector((state) => state.interventi.requests.fetch);
-    const totalInterventi = useSelector((state) => state.interventi.total)
+    const interventi = useSelector( state => state.interventi);
+    const filteredData = interventi.filteredData;
+    const requestStatus = interventi.requests.fetch;
+    const totalInterventi = interventi.total;
+    const totalFilteredInterventi = interventi.filteredTotal
 
 
     // Preview component for a small section
@@ -30,17 +32,17 @@ export const SectionPreviewInterventi = _ => {
 
     useEffect(() => {
         if(totalInterventi) {
-            setReducedData(interventi.slice(0, maxReducedNumber));
+            setReducedData(filteredData.slice(0, maxReducedNumber));
          
-            interventi.length > maxReducedNumber 
+            filteredData.length > maxReducedNumber 
             ? setIsReduced(true) : setIsReduced(false);
         }
-        console.log(interventi, filter)
-    }, [interventi]);
+    }, [filteredData]);
 
 // Filter state
     const [filter, setFilter] = useState('');
     const [timeoutId, setTimeoutId] = useState(null);
+    const [maxDataSize, setMaxDataSize] = useState(20);
 
     const handleChangeFilter = ({ target }) => {
         setFilter(prev => prev = target.value);
@@ -52,11 +54,22 @@ export const SectionPreviewInterventi = _ => {
         if (timeoutId) clearTimeout(timeoutId);
 
         const id = setTimeout(() => {
-            dispatch(fetchData({ maxReducedNumber, filter }));
+            dispatch(fetchData({ limit: maxReducedNumber, filter }));
         }, 250); 
         setTimeoutId(id);
 
+
+
     }, [filter, maxReducedNumber])
+
+    useEffect( _ => {
+        if(filter.length > 0) {
+            setMaxDataSize(totalFilteredInterventi - maxReducedNumber);
+        }else{
+            setMaxDataSize(totalInterventi - maxReducedNumber);
+        }
+     
+    }, [maxReducedNumber, totalFilteredInterventi])
 
     return(
         <div className={styles.MainContainer}>
@@ -68,7 +81,7 @@ export const SectionPreviewInterventi = _ => {
             </div>
             <div className={styles.DisplayContainer}>
                 {
-                    interventi.length === 0 || interventi.length === undefined
+                    filteredData.length === 0 || filteredData.length === undefined
                     ? <h2 className={styles.NotFound}>Nessun intervento trovato</h2>
                     : reducedData.map((intervento, index) => (
                         index < maxReducedNumber
@@ -77,8 +90,14 @@ export const SectionPreviewInterventi = _ => {
                     ))
                 }
             </div>
-            {   isReduced 
-                ? <button className={styles.AddReducedData} name='Mostra' onClick={handleClickAddMaxReducedNumber}>{ `Mostra di più (${totalInterventi - reducedData.length} ancora da mostrare)` }</button> 
+            {   isReduced && filteredData.length - maxReducedNumber > 0
+                ? <button className={styles.AddReducedData} 
+                name='Mostra' 
+                onClick={handleClickAddMaxReducedNumber}>
+                    { 
+                     `Mostra di più (${filter.length > 0 ? `${maxDataSize} ancora da mostrare / ${totalFilteredInterventi} filtrati / `: `${ maxDataSize} ancora da mostrare / `}${totalInterventi} interventi totali)` 
+                    }
+                </button> 
                 : null }
 
             <StatusBox boxStatus={requestStatus}/>

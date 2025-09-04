@@ -3,8 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchData = createAsyncThunk('interventi/fetchData', 
     async ({ limit, filter }) => {
-
     const response = await fetch(`http://localhost:3001/fakeData?limit=${limit || 1000}&filter=${filter || ''}`);
+
     if (response.ok) {
        return await response.json();
     } else {
@@ -50,6 +50,7 @@ const sliceOptions = {
         all: {},
         filteredData: {},
         total: 0,
+        filteredTotal: 0,
         filter: ''
     },
     reducers: {
@@ -83,6 +84,7 @@ const sliceOptions = {
             state.all = action.payload.data;
             state.filteredData = action.payload.filteredData;
             state.total = action.payload.total; 
+            state.filteredTotal = action.payload.filteredTotal; 
         })
         .addCase(fetchData.rejected, (state) => {
             console.log('Fetch Failed')
