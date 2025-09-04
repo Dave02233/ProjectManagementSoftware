@@ -9,8 +9,9 @@ export const Intervento = _ => {
     const { id } = useParams()
 
     const intervento = useSelector(store => {
-        const all = store.interventi.all;
-        return all ? all.find(intervento => intervento.id.toString() === id.toString()) : null;
+        const data = store.interventi.filteredData;
+        console.log(data);
+        return data ? data.find(intervento => intervento.id.toString() === id.toString()) : null;
     })
     
     if (!intervento) {

@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchData = createAsyncThunk('interventi/fetchData', 
-    async () => {
-    const response = await fetch('/api/interventiDaAggiungere');
+    async ({ limit, filter }) => {
+
+    const response = await fetch(`http://localhost:3001/fakeData?limit=${limit || 1000}&filter=${filter || ''}`);
     if (response.ok) {
        return await response.json();
     } else {
-        throw new Error ('Feth interventi fallito');
+        throw new Error ('Fetch interventi fallito');
     }
 });
 
@@ -29,39 +30,6 @@ const addData = createAsyncThunk('interventi/addData',
     }
 );
 
-
-// Dati fittizi da cancellare quando Daniele farà il backend
-import { randomChances } from '../../Functions/randomChances.js';
-
-const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
-
-// Genera un array di date
-const days = [];
-const initialDate = new Date(`2025-08-${randomChances(10).index + 1}`);
-const numberOfDays = (new Date() - initialDate) / (1000 * 60 * 60 * 24);
-
-for (let i = 0; i < numberOfDays; i++) {
-    const actDay = i * 1000 * 60 * 60 * 24;
-    const newDay = new Date((actDay + initialDate.getTime()))
-    days.push(newDay);
-}
-
-const fakeTestData = Array.from({ length: 1000 }, (_, i) => ({
-    clientName: `NomeCliente ${i+1}`,
-    id: i + 1,
-    author: 'Dave',
-    description: `Descrizione dell'intervento ${i+1}`,
-    data: days
-    .slice(randomChances(days.length).index, days.length + 1)
-    .map(day => ({
-        date: day.toISOString().split('T')[0],
-        workingHours: randomChances(9).index + 1,
-        travelHours: randomChances(3).index + 1,
-        km: day.getDate() * 10
-    })),
-    status: statuses[randomChances(4).index]
-}));
-
 ////////////////////////////////////////////////////////////////////////
 
 const sliceOptions = {
@@ -79,16 +47,16 @@ const sliceOptions = {
                 fulfilled: false
             }
         },
-        all: fakeTestData,
-        filteredData: fakeTestData,
+        all: {},
+        filteredData: {},
+        total: 0,
         filter: ''
     },
     reducers: {
         setFilteredData: (state, action) => {
             state.filter = action.payload;
             if (state.filter) {
-                state.filteredData = state.all.filter(intervento => intervento.clientName.toLowerCase().includes(state.filter.toLowerCase())
-                );
+                state.filteredData = state.filteredData;
             } else {
                 state.filteredData = state.all;
             }
@@ -102,18 +70,22 @@ const sliceOptions = {
         builder
         //Fetch Data
         .addCase(fetchData.pending, (state) => {
+            console.log('Fetch Pending');
             state.requests.fetch.pending = true;
             state.requests.fetch.error = false;
             state.requests.fetch.fulfilled = false;
         })
         .addCase(fetchData.fulfilled, (state, action) => {
+            console.log('Fetch Completed Successfully')
             state.requests.fetch.pending = false;
             state.requests.fetch.error = false;
             state.requests.fetch.fulfilled = true;
-            state.all = action.payload;
-            state.filteredData = action.payload;
+            state.all = action.payload.data;
+            state.filteredData = action.payload.filteredData;
+            state.total = action.payload.total; 
         })
         .addCase(fetchData.rejected, (state) => {
+            console.log('Fetch Failed')
             state.requests.fetch.pending = false;
             state.requests.fetch.error = true;
             state.requests.fetch.fulfilled = false;

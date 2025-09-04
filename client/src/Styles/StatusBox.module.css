@@ -1,7 +1,7 @@
 @import url(./variables.css);
 
 .MainContainer {
-    position: absolute;
+    position: fixed;
     top: 80vh;
     right: 0;
     width: 20%;
@@ -50,7 +50,7 @@
     background-size: 300% 100%;
     background-repeat: repeat;
     background-position: 0% 50%;
-    animation: slideGradient 3s linear infinite;
+    animation: slideGradient 1500ms linear infinite;
 }
 
 
