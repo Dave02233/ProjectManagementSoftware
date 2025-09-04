@@ -1,10 +1,40 @@
 @import url(./variables.css);
 
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url(./Fonts/Anonymous_Pro/AnonymousPro-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url(./Fonts/Anonymous_Pro/AnonymousPro-Bold.ttf);
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url(./Fonts/Anonymous_Pro/AnonymousPro-Italic.ttf);
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'AnonymousPro';
+    src: url(./Fonts/Anonymous_Pro/AnonymousPro-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+}
+
+
 body {
     margin: 0;
     padding: 0;
 
     background-color: var(--primary);
+
+    >* {
+        font-family: 'AnonymousPro', 'Lucida Sans', 'Courier New';
+    }
 }
 
 video {
@@ -14,5 +44,5 @@ video {
     object-fit: cover;
     width: 100%;
     z-index: -1;
-    
 }
+
