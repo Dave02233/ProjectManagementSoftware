@@ -251,3 +251,32 @@
         background-color: var(--primary);
     }
 }
+
+@media (max-width : 850px) {
+    .DataContainer {
+        width: 90% !important;
+    }
+}
+
+@media (max-width : 470px) {
+    table {
+        .TableInput {
+            max-width: 5rem;
+        }
+    }
+    td {
+        padding: 0.05rem;
+    }
+
+    
+}
+
+@media (max-width : 375px) {
+    table {
+        .TableInput {
+            max-width: 3rem;
+        }
+    }
+
+    
+}

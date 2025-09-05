@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchData = createAsyncThunk('interventi/fetchData', 
     async ({ limit, filter }) => {
-    const response = await fetch(`http://localhost:3001/fakeData?limit=${limit || 1000}&filter=${filter || ''}`);
+    const response = await fetch(`http://192.168.33.93:3001/fakeData?limit=${limit || 1000}&filter=${filter || ''}`);
 
     if (response.ok) {
        return await response.json();

@@ -49,6 +49,7 @@ const fakeTestData = Array.from({ length: 1000000 }, (_, i) => ({
 }));
 
 app.get('/fakeData', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
 
   const limit = parseInt(req.query.limit) || 1000; 
 
@@ -85,7 +86,7 @@ app.all('/*aiut', (req, res) => {
 });
 
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0',  () => {
   console.log(`Server listening on port ${PORT}`);
 });
 

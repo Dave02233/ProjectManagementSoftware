@@ -131,3 +131,10 @@
 .Grey {
     background-color: hsla(0, 2%, 70%, 0.60);
 }
+
+
+@media (max-width : 850px) {
+    .DataContainer {
+        width: 90% !important;
+    }
+}

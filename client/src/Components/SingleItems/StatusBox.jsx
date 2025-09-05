@@ -39,7 +39,7 @@ export const StatusBox = ({ boxStatus }) => {
     }, [pending, fulfilled, error]);
 
     return (
-        <div className={styles.MainContainer} style={{width: visibility ? '20%' : 0}}>
+        <div className={`${styles.MainContainer} ${visibility ? styles.Visible : styles.NotVisible}`}>
             <div className={styles.StatusTextContainer}>
                 <h4>Request Status</h4>
                 <p>{
