@@ -59,15 +59,10 @@
         width: 80%;
         
         text-align: center;
-        border-collapse: collapse;
-
         background-color: var(--slight-hover);
 
         th {
             padding: 0.5rem;
-        }
-
-        th {
             font-size: 1.2rem;
             color:var(--text-light);
         }
@@ -86,6 +81,8 @@
 
             justify-content: center;
             align-items: center;
+
+            background-color: var(--primary);
 
             img {
                     cursor: pointer; 
@@ -115,8 +112,8 @@
 
             border: none;
 
-            background-color: var(--primary);
             color: var(--text-dark);
+            background-color: transparent;
 
             /* Chrome, Safari, Edge, Opera */
             &::-webkit-inner-spin-button, 
@@ -264,6 +261,9 @@
             max-width: 5rem;
         }
     }
+    th {
+        font-size: 0.9rem;
+    }
     td {
         padding: 0.05rem;
     }
@@ -272,9 +272,16 @@
 }
 
 @media (max-width : 375px) {
+
+    form {
+        padding: 0 !important;
+    }
     table {
         .TableInput {
             max-width: 3rem;
+        }
+        th {
+            font-size: 1rem !important;
         }
     }
 

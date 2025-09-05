@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+const serverAdress = 'localhost:3001'
+
 const fetchData = createAsyncThunk('interventi/fetchData', 
     async ({ limit, filter }) => {
-    const response = await fetch(`http://192.168.33.93:3001/fakeData?limit=${limit || 1000}&filter=${filter || ''}`);
+    const response = await fetch(`http://${serverAdress}/fakeData?limit=${limit || 1000}&filter=${filter || ''}`);
 
     if (response.ok) {
        return await response.json();
@@ -12,10 +14,22 @@ const fetchData = createAsyncThunk('interventi/fetchData',
     }
 });
 
+const generateAutoCompleteData = createAsyncThunk('interventi/generateAutoCompleteData',
+    async () => {
+        const response = await fetch(`http://${serverAdress}/generateAutoCompleteData`);
+
+        if (response.ok) {
+            return await response.json()
+        } else {
+            throw new Error ('Fetch AutoComplete Data fallito');
+        }
+    }
+)
+
 const addData = createAsyncThunk('interventi/addData', 
     async (interventoData) => {
-        console.log('adding Data...')
-        const response = await fetch('/api/addIntervento', {
+        console.log(interventoData);
+        const response = await fetch(`http://${serverAdress}/addData`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,12 +37,13 @@ const addData = createAsyncThunk('interventi/addData',
             body: JSON.stringify(interventoData)
         });
         if (response.ok) {
-        return await response.json();
+            return await response.json();
         } else {
             throw new Error('Aggiunta intervento fallita');
         }
     }
 );
+
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -45,13 +60,20 @@ const sliceOptions = {
                 pending: false,
                 error: false,
                 fulfilled: false
+            },
+            autocomplete: {
+                pending: false,
+                error: false,
+                fulfilled: false
             }
         },
         all: {},
         filteredData: {},
         total: 0,
         filteredTotal: 0,
-        filter: ''
+        filter: '',
+        authors: [],
+        clientsNames: []
     },
     reducers: {
         setFilteredData: (state, action) => {
@@ -71,13 +93,13 @@ const sliceOptions = {
         builder
         //Fetch Data
         .addCase(fetchData.pending, (state) => {
-            console.log('Fetch Pending');
+            console.log('Fetch Data pending...');
             state.requests.fetch.pending = true;
             state.requests.fetch.error = false;
             state.requests.fetch.fulfilled = false;
         })
         .addCase(fetchData.fulfilled, (state, action) => {
-            console.log('Fetch Completed Successfully')
+            console.log('Fetch Data completed successfully')
             state.requests.fetch.pending = false;
             state.requests.fetch.error = false;
             state.requests.fetch.fulfilled = true;
@@ -87,23 +109,27 @@ const sliceOptions = {
             state.filteredTotal = action.payload.filteredTotal; 
         })
         .addCase(fetchData.rejected, (state) => {
-            console.log('Fetch Failed')
+            console.error('Fetch Data Failed')
             state.requests.fetch.pending = false;
             state.requests.fetch.error = true;
             state.requests.fetch.fulfilled = false;
         })
         //Add Data
         .addCase(addData.pending, (state) => {
+            console.log('Add Data pending...');
             state.requests.add.pending = true;
             state.requests.add.error = false;
             state.requests.add.fulfilled = false;
         })
-        .addCase(addData.fulfilled, (state) => {
+        .addCase(addData.fulfilled, (state, action) => {
+            console.log('Add Data completed successfully');
             state.requests.add.pending = false;
             state.requests.add.error = false;
             state.requests.add.fulfilled = true;   
+            console.log(action.payload);
         })
         .addCase(addData.rejected, (state) => {
+            console.error('Add Data Failed');
             state.requests.add.pending = false;
             state.requests.add.error = true;
             state.requests.add.fulfilled = false;   
@@ -112,6 +138,27 @@ const sliceOptions = {
 
         //Remove Data
 
+        //Autocomplete Data
+        .addCase(generateAutoCompleteData.pending, (state) => {
+            console.log('Fetch Autocomplete Date pending...');
+            state.requests.autocomplete.pending = true;
+            state.requests.autocomplete.error = false;
+            state.requests.autocomplete.fulfilled = false;
+        })
+        .addCase(generateAutoCompleteData.fulfilled, (state, action) => {
+            console.log('Fetch Autocomplete Data completed successfully');
+            state.requests.autocomplete.pending = false;
+            state.requests.autocomplete.error = false;
+            state.requests.autocomplete.fulfilled = true;   
+            state.clientsNames = action.payload.clientsNames;
+            state.authors = action.payload.authors;
+        })
+        .addCase(generateAutoCompleteData.rejected, (state) => {
+            console.error('Fetch Autocomplete Data failed');
+            state.requests.autocomplete.pending = false;
+            state.requests.autocomplete.error = true;
+            state.requests.autocomplete.fulfilled = false;   
+        })
         .addDefaultCase((state, action) => {
             if (!action.type.startsWith('@@redux')) {
             console.warn('Azione non riconosciuta nel reducer di interventiSlice:', action.type);
@@ -123,4 +170,4 @@ const sliceOptions = {
 
 export const interventiSlice = createSlice(sliceOptions);
 export const { setFilteredData, resetFilteredData } = interventiSlice.actions;
-export { fetchData, addData };
+export { fetchData, addData, generateAutoCompleteData };

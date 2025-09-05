@@ -1,16 +1,21 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
-
 const app = express();
+
+app.use(cors());          // permette da qualsiasi origine
+app.use(express.json());
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
 const PORT = 3001;
 
-app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
 
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from server!' });
 });
 
-
+/////////////////////// Random Data Generation ////////////////////////////////
 function randomChances (num) {
     const index = Math.floor(Math.random() * num);
 
@@ -19,9 +24,6 @@ function randomChances (num) {
     };
 }
 
-const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
-
-// Genera un array di date
 const days = [];
 const initialDate = new Date(`2025-08-${randomChances(10).index + 1}`);
 const numberOfDays = (new Date() - initialDate) / (1000 * 60 * 60 * 24);
@@ -32,7 +34,9 @@ for (let i = 0; i < numberOfDays; i++) {
     days.push(newDay);
 }
 
-const fakeTestData = Array.from({ length: 1000000 }, (_, i) => ({
+const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
+
+const fakeTestData = Array.from({ length: 10000 }, (_, i) => ({
     clientName: `NomeCliente ${i+1}`,
     id: i + 1,
     author: 'Dave',
@@ -47,6 +51,7 @@ const fakeTestData = Array.from({ length: 1000000 }, (_, i) => ({
     })),
     status: statuses[randomChances(4).index]
 }));
+////////////////////////////////////////////////////////////
 
 app.get('/fakeData', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); 
@@ -69,7 +74,7 @@ app.get('/fakeData', (req, res) => {
   }
   filteredDataSliced = filteredData.slice(0, end);
 
-  console.log(`Sending Data...${new Data()}`)
+  console.log(`${new Date().toString().split('T')[0]} - Sending Fake Data...`)
 
   res.json({
     total: fakeTestData.length, 
@@ -79,6 +84,26 @@ app.get('/fakeData', (req, res) => {
   });
 
 });
+
+app.get('/generateAutoCompleteData', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  
+  const clientsNames = [...new Set(fakeTestData.map(i => i.clientName))];
+  const authors = [...new Set(fakeTestData.map(i => i.author))];
+
+  console.log(`${new Date().toString().split('T')[0]} - Sending Autocomplete Data...`)
+
+  res.json({
+    clientsNames,
+    authors
+  })
+})
+
+app.post('/addData', (req, res) => {
+  console.log(`${new Date().toString().split('T')[0]} - Received Data: `, req.body);
+  res.json({ message: 'Data received' });
+});
+
 
 
 app.all('/*aiut', (req, res) => {

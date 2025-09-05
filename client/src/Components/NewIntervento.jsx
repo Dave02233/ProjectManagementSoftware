@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 //Store
 import { useDispatch, useSelector } from "react-redux"
-import { addData } from "../Store/Slices/interventiSlice"
+import { addData, generateAutoCompleteData } from "../Store/Slices/interventiSlice"
 //Styles
 import styles from '../Styles/NewIntervento.module.css'
 //Components
@@ -14,20 +14,23 @@ export const NewIntervento = _ => {
 
     const dispatch = useDispatch();
     const interventi = useSelector(state => state.interventi);
-    const requestState = useSelector(state => state.interventi.requests);
+    const requestState = interventi.requests;
+    const { clientsNames, authors } = interventi;
 
-
-    useEffect(_ => console.log(requestState), [requestState]);
+    useEffect(_ => {
+        dispatch(generateAutoCompleteData());
+    }, []);
 
     // Con new Set rimuovo i duplicati e rimuovo null se presenti    
-    const clienti = [...new Set(interventi.all.map(i => i.clientName))];
-    const autori = [...new Set(interventi.all.map(i => i.author))];
+    // const clienti = [...new Set(interventi.all.map(i => i.clientName))];
+    // const autori = [...new Set(interventi.all.map(i => i.author))];
     
     const [ newIntervento, setNewIntervento ] = useState({
         clientName: '',
         author: '',
         description: '',
         data: [{
+            date: new Date().toISOString().split('T')[0],
             workingHours: 8,
             travelHours: 2,
             km: 50
@@ -99,9 +102,8 @@ export const NewIntervento = _ => {
 
     //Form
     const handleSubmit = event => {
-        console.log('Submit Form')
         event.preventDefault();
-        dispatch(addData(event.target));
+        dispatch(addData(newIntervento));
     }
 
     /*ErrorHandling
@@ -129,7 +131,7 @@ export const NewIntervento = _ => {
                         />
                         <datalist id="clienti">
                         {
-                            clienti.map(cliente => (
+                            clientsNames.map(cliente => (
                                 <option key={cliente} value={cliente} />
                             ))
                         }
@@ -143,7 +145,7 @@ export const NewIntervento = _ => {
                         <input name="author" className={styles.MainInput} maxLength={20} value={newIntervento.author} onChange={handleChangeProperty} list="author"  required />
                         <datalist id="author">
                         {
-                            autori.map(autore => (
+                            authors.map(autore => (
                                 <option key={autore} id={autore}>{autore}</option>
                             ))    
                         }
