@@ -69,7 +69,7 @@ app.get('/fakeData', (req, res) => {
   }
   filteredDataSliced = filteredData.slice(0, end);
 
-  console.log('Sending Data...')
+  console.log(`Sending Data...${new Data()}`)
 
   res.json({
     total: fakeTestData.length, 
