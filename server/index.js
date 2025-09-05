@@ -10,7 +10,6 @@ app.use(express.static(path.resolve(__dirname, '../client/dist')));
 const PORT = 3001;
 
 
-
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from server!' });
 });
