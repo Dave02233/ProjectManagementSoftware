@@ -1,8 +1,11 @@
 import { useState, useEffect, useMemo } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+//Components
+import { SimpleChart } from "./Charts/SimpleChart"
 //Styles
 import styles from '../Styles/Intervento.module.css'
+
 
 export const Intervento = _ => {
     
@@ -65,6 +68,7 @@ export const Intervento = _ => {
                 </tbody>
             </table>
             <h3 style={{backgroundColor: `${statusColor}`}}>{status}</h3>
+            <SimpleChart intervento={data}/>
         </div>
     )
 }

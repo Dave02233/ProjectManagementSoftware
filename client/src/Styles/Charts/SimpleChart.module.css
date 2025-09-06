@@ -1,0 +1,9 @@
+.ComposedChart {
+    background-color: #393D3F;
+}
+
+@media (max-width: 550px) {
+    .Container {
+        display: none;
+    }
+}

@@ -7,6 +7,7 @@ import { addData, generateAutoCompleteData } from "../Store/Slices/interventiSli
 import styles from '../Styles/NewIntervento.module.css'
 //Components
 import { StatusBox } from "./SingleItems/StatusBox"
+import { SimpleChart } from "./Charts/SimpleChart"
 
 export const NewIntervento = _ => {
 
@@ -194,8 +195,10 @@ export const NewIntervento = _ => {
                     </tbody>
                 </table>
                 <button type="button" className={styles.StatusButton} style={{backgroundColor: statusColor}} onClick={handleClickChangeStatus}>Status: {newIntervento.status}</button>
+                <SimpleChart intervento={newIntervento.data} />
                 <button type="submit" className={styles.SubmitButton}>Invia</button>
             </form>
+      
             <StatusBox boxStatus={requestState.add}/>
         </>
     )
