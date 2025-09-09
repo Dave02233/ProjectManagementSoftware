@@ -61,17 +61,24 @@
 
             padding: 0.1rem;
 
+            &:hover {
+                background-color: #565A5C !important;
+                color: var(--primary-lightest) ;
+                &::placeholder {
+                      
+                    color: var(--text-muted);
+                }
+            }
+            
+
             &::placeholder {
                 color: var(--primary-darkest);
-                &:hover {
-                    color: var(--text-accent-hover);
-                }
             }
 
             border: 2px  var(--primary);
 
 
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
         .Filtro:hover, .Filtro:focus {

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const serverAdress = '192.168.0.225:3001'
+const serverAdress = '192.168.33.93:3001'
 
 const fetchData = createAsyncThunk('interventi/fetchData', 
     async ({ limit, filter }) => {

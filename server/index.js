@@ -22,7 +22,7 @@ function randomChances(num) {
 
 const statuses = ['Completato', 'In Corso', 'In Sospeso'];
 
-const fakeTestData = Array.from({ length: 10000 }, (_, i) => {
+const fakeTestData = Array.from({ length: 1000000 }, (_, i) => {
 
     const startDate = new Date(`2025-08-${randomChances(10).index + 1}`);
     const durationDays = randomChances(20).index + 1;
@@ -73,7 +73,7 @@ app.get('/fakeData', (req, res) => {
   }
   filteredDataSliced = filteredData.slice(0, end);
 
-  console.log(`${new Date().toString().split('T')[0]} - Sending Fake Data...`)
+  console.log(`${new Date().toISOString().replace('T', '/').replace('Z', '')} - ${req.ip} - Fake Data - Sent`)
 
   res.json({
     total: fakeTestData.length, 
@@ -90,7 +90,7 @@ app.get('/generateAutoCompleteData', (req, res) => {
   const clientsNames = [...new Set(fakeTestData.map(i => i.clientName))];
   const authors = [...new Set(fakeTestData.map(i => i.author))];
 
-  console.log(`${new Date().toString().split('T')[0]} - Sending Autocomplete Data...`)
+  console.log(`${new Date().toISOString().replace('T', '/').replace('Z', '')} - ${req.ip} - Autocomplete Data - Sent`)
 
   res.json({
     clientsNames,
@@ -141,13 +141,13 @@ fakeTestData.forEach(intervento => {
     })
     .map(week => ({ week, ...statsPerSettimana[week] }));
 
-  console.log(`${new Date().toString().split('T')[0]} - Sending Stats Data...`)
+  console.log(`${new Date().toISOString().replace('T', '/').replace('Z', '')} - ${req.ip} - Stats Data - Sent`)
 
   res.json(weeklyStats)
 })
 
 app.post('/addData', (req, res) => {
-  console.log(`${new Date().toString().split('T')[0]} - Received Data: `, req.body);
+  console.log(`${new Date().toISOString().replace('T', '/').replace('Z', '')} - ${req.ip} - Add Data - Recieved:`, req.body);
   res.json({ message: 'Data received' });
 });
 
