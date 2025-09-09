@@ -18,7 +18,7 @@ export const SectionPreviewInterventi = _ => {
     const filteredData = interventi.filteredData;
     const requestStatus = interventi.requests.fetch;
     const totalInterventi = interventi.total;
-    const totalFilteredInterventi = interventi.filteredTotal
+    const totalFilteredInterventi = interventi.filteredTotal;
 
 
     // Preview component for a small section
