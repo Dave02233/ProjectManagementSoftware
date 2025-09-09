@@ -15,41 +15,41 @@ app.get('/api', (req, res) => {
 });
 
 /////////////////////// Random Data Generation ////////////////////////////////
-function randomChances (num) {
+function randomChances(num) {
     const index = Math.floor(Math.random() * num);
+    return { index };
+}
+
+const statuses = ['Completato', 'In Corso', 'In Sospeso'];
+
+const fakeTestData = Array.from({ length: 10000 }, (_, i) => {
+
+    const startDate = new Date(`2025-08-${randomChances(10).index + 1}`);
+    const durationDays = randomChances(20).index + 1;
+    const endDate = new Date(startDate.getTime() + durationDays * 24 * 60 * 60 * 1000);
+    const days = [];
+    const numberOfDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+    for (let i = 0; i < numberOfDays; i++) {
+        const day = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
+        days.push(day);
+    }
 
     return {
-        index: index
+        clientName: `NomeCliente ${i + 1}`,
+        id: i + 1,
+        author: 'Dave',
+        description: `Descrizione dell'intervento ${i + 1}`,
+        data: days.map(day => ({
+            date: day.toISOString().split('T')[0],
+            workingHours: randomChances(9).index + 1,
+            travelHours: randomChances(3).index + 1,
+            km: day.getDate() * 10
+        })),
+        status: statuses[randomChances(statuses.length).index]
     };
-}
+});
 
-const days = [];
-const initialDate = new Date(`2025-08-${randomChances(10).index + 1}`);
-const numberOfDays = (new Date() - initialDate) / (1000 * 60 * 60 * 24);
-
-for (let i = 0; i < numberOfDays; i++) {
-    const actDay = i * 1000 * 60 * 60 * 24;
-    const newDay = new Date((actDay + initialDate.getTime()))
-    days.push(newDay);
-}
-
-const statuses = ['Completato', 'In Corso', 'In Attesa', 'Annullato'];
-
-const fakeTestData = Array.from({ length: 10000 }, (_, i) => ({
-    clientName: `NomeCliente ${i+1}`,
-    id: i + 1,
-    author: 'Dave',
-    description: `Descrizione dell'intervento ${i+1}`,
-    data: days
-    .slice(randomChances(days.length).index, days.length + 1)
-    .map(day => ({
-        date: day.toISOString().split('T')[0],
-        workingHours: randomChances(9).index + 1,
-        travelHours: randomChances(3).index + 1,
-        km: day.getDate() * 10
-    })),
-    status: statuses[randomChances(4).index]
-}));
 ////////////////////////////////////////////////////////////
 
 app.get('/fakeData', (req, res) => {
@@ -96,6 +96,54 @@ app.get('/generateAutoCompleteData', (req, res) => {
     clientsNames,
     authors
   })
+})
+
+/////////////////////////////// Stats Generation ///////////////////////////////////////
+
+const { getActualWeek } = require('./Functions/week.js');
+
+
+app.get('/getStats', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+  const statsPerSettimana = {};
+
+fakeTestData.forEach(intervento => {
+  if (intervento.data.length === 0) return;
+
+  const lastDate = intervento.data[intervento.data.length - 1].date;
+  const week = getActualWeek(lastDate);
+
+  if (!statsPerSettimana[week]) {
+    statsPerSettimana[week] = { total: 0, completed: 0, pending: 0, active: 0 };
+  }
+
+  statsPerSettimana[week].total += 1;
+
+  switch (intervento.status) {
+    case "Completato":
+      statsPerSettimana[week].completed += 1;
+      break;
+    case "In Corso":
+      statsPerSettimana[week].active += 1;
+      break;
+    case "In Sospeso":
+      statsPerSettimana[week].pending += 1;
+      break;
+  }
+  });
+
+  const weeklyStats = Object.keys(statsPerSettimana)
+    .sort((a, b) => {
+      const [yearA, weekA] = a.split('-W').map(Number);
+      const [yearB, weekB] = b.split('-W').map(Number);
+      return yearA !== yearB ? yearA - yearB : weekA - weekB
+    })
+    .map(week => ({ week, ...statsPerSettimana[week] }));
+
+  console.log(`${new Date().toString().split('T')[0]} - Sending Stats Data...`)
+
+  res.json(weeklyStats)
 })
 
 app.post('/addData', (req, res) => {

@@ -41,7 +41,7 @@ export const NewIntervento = _ => {
 
     const statusColor = newIntervento.status === 'In Corso' ? 'hsla(36, 100%, 50%, 1.0)' : 
                         newIntervento.status === 'Completato' ? 'hsla(131, 100%, 50%, 0.600)' : 
-                        newIntervento.status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
+                        newIntervento.status === 'In Sospeso' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
     
     const handleChangeProperty = (event) => {
         const { name, value } = event.target;
@@ -52,7 +52,7 @@ export const NewIntervento = _ => {
     };
 
     const handleClickChangeStatus = _ => {
-        const statuses = ['In Corso', 'Completato', 'Annullato', 'In Attesa'];
+        const statuses = ['In Corso', 'Completato', 'In Sospeso'];
         const currentIndex = statuses.indexOf(newIntervento.status);
         const nextIndex = (currentIndex + 1) % statuses.length; //Current + 1 Mod Length
         setNewIntervento(prev => ({

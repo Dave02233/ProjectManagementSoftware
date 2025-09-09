@@ -8,7 +8,7 @@ export const PreviewIntervento = ({ intervento, isLoading, error }) => {
 
     const statusColor = status === 'In Corso' ? 'hsla(36, 100%, 50%, 1.0)' : 
                 status === 'Completato' ? 'hsla(131, 100%, 50%, 0.600)' : 
-                status === 'Annullato' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
+                status === 'In Sospeso' ? 'hsla(0, 100%, 50%, 0.80)' : 'hsla(0, 2%, 70%, 0.60)';
 
     return (
         <NavLink to={`/Interventi/${id}`}>

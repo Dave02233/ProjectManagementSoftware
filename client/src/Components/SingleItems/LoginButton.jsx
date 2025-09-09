@@ -1,4 +1,4 @@
-import styles from '../../Styles/LoginButton.module.css';
+import styles from '../../Styles/SingleItems/LoginButton.module.css';
 
 export const LoginButton = (props) => {
 

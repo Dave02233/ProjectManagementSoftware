@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import { MainPage } from './Components/MainPage.jsx'
 import { Preview } from './Components/Preview.jsx'
+import { MainChart } from './Components/Charts/MainChart.jsx'
 import { Intervento } from './Components/Intervento.jsx';
 import { NewIntervento } from './Components/NewIntervento.jsx';
 import { NotFound } from './Components/Extra/NotFound.jsx'
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
     element: <MainPage />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Preview /> },  
+      { index: true, element: 
+      <>
+        <MainChart />
+        <Preview />
+      </> },  
       { path: 'Interventi', element: <h1>Interventi</h1> },
       { path: 'Interventi/:id', element: <Intervento /> },
       { path: 'Interventi/:id/Modifica', element: <h1>Modifica Rapportino</h1> },

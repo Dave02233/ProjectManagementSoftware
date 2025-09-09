@@ -1,0 +1,11 @@
+.ChartContainer {
+    background-color: #393D3F;
+    height: 35vh;  
+    width: 100%;   
+}
+
+@media (max-width: 550px) {
+    .ChartContainer {
+        display: none;
+    }
+}

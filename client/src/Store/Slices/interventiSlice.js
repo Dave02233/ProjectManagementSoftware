@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const serverAdress = 'localhost:3001'
+const serverAdress = '192.168.0.225:3001'
 
 const fetchData = createAsyncThunk('interventi/fetchData', 
     async ({ limit, filter }) => {
@@ -44,6 +44,18 @@ const addData = createAsyncThunk('interventi/addData',
     }
 );
 
+const getStats = createAsyncThunk('interventi/getStats',
+    async () => {
+        const response = await fetch(`http://${serverAdress}/getStats`);
+
+        if (response.ok) {
+            return await response.json()
+        } else {
+            throw new Error ('Fetch AutoComplete Data fallito');
+        }
+    }
+)
+
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -65,6 +77,11 @@ const sliceOptions = {
                 pending: false,
                 error: false,
                 fulfilled: false
+            },
+            stats: {
+                pending: false,
+                error: false,
+                fulfilled: false
             }
         },
         all: {},
@@ -73,7 +90,14 @@ const sliceOptions = {
         filteredTotal: 0,
         filter: '',
         authors: [],
-        clientsNames: []
+        clientsNames: [],
+        stats: [{
+            total: 0,
+            pending: 0,
+            completed: 0,
+            active: 0,
+            date:  '2025-09-08'
+        }]
     },
     reducers: {
         setFilteredData: (state, action) => {
@@ -132,7 +156,7 @@ const sliceOptions = {
             console.error('Add Data Failed');
             state.requests.add.pending = false;
             state.requests.add.error = true;
-            state.requests.add.fulfilled = false;   
+            state.requests.add.fulfilled = false; 
         })
         //Modify Data
 
@@ -159,6 +183,26 @@ const sliceOptions = {
             state.requests.autocomplete.error = true;
             state.requests.autocomplete.fulfilled = false;   
         })
+        //Stats
+        .addCase(getStats.pending, (state, action) => {
+            console.log('Receiving Stats...');
+            state.requests.stats.pending = true;
+            state.requests.stats.error = false;
+            state.requests.stats.fulfilled = false;   
+        })
+        .addCase(getStats.fulfilled, (state, action) => {
+            console.log('Stats received succesfully');
+            state.requests.stats.pending = false;
+            state.requests.stats.error = false;
+            state.requests.stats.fulfilled = true;   
+            state.stats = action.payload;
+        })
+        .addCase(getStats.rejected, (state, action) => {
+            console.error('Failed to get stats');
+            state.requests.stats.pending = false;
+            state.requests.stats.error = true;
+            state.requests.stats.fulfilled = false;   
+        })
         .addDefaultCase((state, action) => {
             if (!action.type.startsWith('@@redux')) {
             console.warn('Azione non riconosciuta nel reducer di interventiSlice:', action.type);
@@ -170,4 +214,4 @@ const sliceOptions = {
 
 export const interventiSlice = createSlice(sliceOptions);
 export const { setFilteredData, resetFilteredData } = interventiSlice.actions;
-export { fetchData, addData, generateAutoCompleteData };
+export { fetchData, addData, generateAutoCompleteData, getStats };

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 //Functions
 import { checkMultipleTruth } from "../../Functions/checkMultipleTruth";
 //Styles
-import styles from '../../Styles/StatusBox.module.css';
+import styles from '../../Styles/SingleItems/StatusBox.module.css';
 
 export const StatusBox = ({ boxStatus }) => {
     const dataCheckFailed = !boxStatus || boxStatus.pending === undefined || boxStatus.fulfilled === undefined || boxStatus.error === undefined;
